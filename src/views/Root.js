@@ -4,6 +4,8 @@ import { GlobalStyle } from 'assets/styles/GlobalStyle';
 import { theme } from 'assets/styles/theme';
 import { Wrapper } from './Root.styles';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Dashboard from 'views/Dashboard';
+import PokePedia from 'views/PokePedia';
 
 const Root = () => {
   return (
@@ -11,7 +13,14 @@ const Root = () => {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Wrapper>
-          <h1>Poke Trainer</h1>
+          <Switch>
+            <Route path="/pokepedia">
+              <PokePedia />
+            </Route>
+            <Route path="/">
+              <Dashboard />
+            </Route>
+          </Switch>
         </Wrapper>
       </ThemeProvider>
     </Router>
