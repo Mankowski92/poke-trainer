@@ -9,11 +9,15 @@ export const StyledNavList = styled.ul`
   justify-content: flex-end;
   padding-right: 1.5rem;
 `;
-export const StyledLink = styled(NavLink)`
+export const StyledLink = styled(NavLink).attrs({ activeClassName: 'active-link' })`
   text-decoration: none;
   background-color: ${({ theme }) => theme.colors.blue};
   font-size: ${({ theme }) => theme.fontSize.xxl};
   margin-left: 1.5rem;
   color: ${({ theme }) => theme.colors.yellow};
   padding: 0 25px;
+
+  &.active-link {
+    text-decoration: underline;
+  }
 `;
