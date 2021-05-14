@@ -5,7 +5,7 @@ const PokePedia = () => {
   return (
     <>
       <StyledDiv>
-        <p>TEST</p>
+        <p>Pokedex content</p>
       </StyledDiv>
     </>
   );

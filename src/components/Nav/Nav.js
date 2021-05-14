@@ -5,8 +5,9 @@ const Nav = () => {
   return (
     <>
       <StyledNavList>
+        <StyledLink to="/">Home</StyledLink>
         <StyledLink to="/pokedex">Pokedex</StyledLink>
-        <StyledLink to="/gohunt">Go hunt</StyledLink>
+        <StyledLink to="/hunting">Go hunt</StyledLink>
         <StyledLink to="/login">Login</StyledLink>
       </StyledNavList>
     </>

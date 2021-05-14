@@ -6,6 +6,8 @@ import { Wrapper } from './Root.styles';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Dashboard from 'views/Dashboard';
 import Pokedex from 'views/Pokedex';
+import Hunting from 'views/Hunting';
+import Login from 'views/Login';
 
 const Root = () => {
   return (
@@ -17,7 +19,13 @@ const Root = () => {
             <Route path="/pokedex">
               <Pokedex />
             </Route>
-            <Route path="/">
+            <Route path="/hunting">
+              <Hunting />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route strict path="/">
               <Dashboard />
             </Route>
           </Switch>
