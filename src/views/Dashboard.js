@@ -1,11 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Nav from '../components/Nav/Nav';
+import PikachuBg from '../components/PikachuBgWraper/PikachuBgWraper';
 
 const Dashboard = () => {
   return (
     <>
-      <h1>Dashboard</h1>
-      <Link to="/pokepedia">PokePedia</Link>
+      <PikachuBg>
+        <Nav />
+      </PikachuBg>
     </>
   );
 };

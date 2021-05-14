@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { StyledDiv } from './PokePedia.styles';
 
 const PokePedia = () => {
   return (
     <>
-      <h1>PokePedia</h1>
-      <Link to="/">Home</Link>
+      <StyledDiv>
+        <p>TEST</p>
+      </StyledDiv>
     </>
   );
 };
