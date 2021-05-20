@@ -6,7 +6,7 @@ const PokePedia = () => {
   const { pokemons } = useContext(PokemonsContext);
   const { handleTest } = useContext(PokemonsContext);
 
-  console.log('Pokemons passed from provider: ', pokemons);
+  console.log('PokePedia Pokemons passed from provider: ', pokemons);
 
   return (
     <>
