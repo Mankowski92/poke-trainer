@@ -1,22 +1,19 @@
 import React, { useState } from 'react';
-import { pokemons as pokemonsData } from '../data/pokemons';
 
 export const PokemonsContext = React.createContext({
   pokemons: [],
-  handleTest: () => {},
+  handleGetRandomPokemon: () => {},
 });
 
 const PokemonsProvider = ({ children }) => {
   const [pokemons, setPokemons] = useState();
 
-  const handleTest = () => {
+  const handleGetRandomPokemon = () => {
     function getRandomArbitrary(min, max) {
       return Math.floor(Math.random() * (max - min) + min);
     }
 
     let randomPokemon = getRandomArbitrary(1, 898);
-
-    console.log('random', randomPokemon);
 
     fetch(`https://pokeapi.co/api/v2/pokemon/${randomPokemon}/`)
       .then((response) => response.json())
@@ -38,7 +35,7 @@ const PokemonsProvider = ({ children }) => {
     <PokemonsContext.Provider
       value={{
         pokemons,
-        handleTest,
+        handleGetRandomPokemon,
       }}
     >
       {children}
