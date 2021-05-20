@@ -3,12 +3,15 @@ import { StyledDiv } from './PokePedia.styles';
 import { PokemonsContext } from '../../providers/PokemonsProvider';
 
 const PokePedia = () => {
-  const { handleGetRandomPokemon } = useContext(PokemonsContext);
+  const { pokemons } = useContext(PokemonsContext);
+  const { handleTest } = useContext(PokemonsContext);
+
+  console.log('PokePedia Pokemons passed from provider: ', pokemons);
 
   return (
     <>
       <StyledDiv>{<p>Pokedex content</p>}</StyledDiv>
-      <button onClick={() => handleGetRandomPokemon()}>Test provider func</button>
+      <button onClick={() => handleTest()}>Test provider func</button>
     </>
   );
 };
