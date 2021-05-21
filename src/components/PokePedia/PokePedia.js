@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { StyledDiv } from './PokePedia.styles';
+import { StyledGetPokemonButton, StyledPokemonContainer, StyledGetPokemonWrapper } from './PokePedia.styles';
 import { PokemonsContext } from '../../providers/PokemonsProvider';
 
 const PokePedia = () => {
@@ -7,8 +7,10 @@ const PokePedia = () => {
 
   return (
     <>
-      <StyledDiv>{<p>Pokedex content</p>}</StyledDiv>
-      <button onClick={() => handleGetRandomPokemon()}>Get random pokemon to console</button>
+      <StyledGetPokemonWrapper>
+        <StyledGetPokemonButton onClick={() => handleGetRandomPokemon()}>Get random pokemon</StyledGetPokemonButton>
+        <StyledPokemonContainer>{<p>Pokedex content</p>}</StyledPokemonContainer>
+      </StyledGetPokemonWrapper>
     </>
   );
 };

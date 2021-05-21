@@ -9,7 +9,7 @@ export const theme = {
     lblue: '#84BCDA',
     yellow: '#ECC30B',
     orange: '#F37748',
-    red: 'D56062',
+    red: '#D56062',
   },
   fontSize: {
     xxl: '36px',
