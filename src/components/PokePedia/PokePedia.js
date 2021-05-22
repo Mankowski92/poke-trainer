@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { StyledGetPokemonButton, StyledPokemonContainer, StyledGetPokemonWrapper } from './PokePedia.styles';
-import { PokemonsContext } from '../../providers/PokemonsProvider';
+// import { PokemonsContext } from '../../providers/PokemonsProvider';
 
 const PokePedia = () => {
-  const { handleTest } = useContext(PokemonsContext);
+  // const { handleTest } = useContext(PokemonsContext);
 
-  const [pokemon, setPokemons] = useState('pokemon');
+  const [pokemon, setPokemons] = useState(null);
 
   const handleGetRandomPokemon = () => {
     function getRandomArbitrary(min, max) {
@@ -22,18 +22,20 @@ const PokePedia = () => {
     fetchData();
   };
 
-  const handleShowState = () => {
-    console.log(pokemon);
-  };
+  // const handleShowState = () => {
+  //   console.log(pokemon);
+  // };
 
   return (
     <>
       <StyledGetPokemonWrapper>
         <StyledGetPokemonButton onClick={() => handleGetRandomPokemon()}>Get random pokemon</StyledGetPokemonButton>
         <StyledPokemonContainer>
-          <div>{pokemon.name}</div>
-          <button onClick={() => handleShowState()}>Show pokemon in console</button>
-          <button onClick={() => handleTest()}>Fire provider handle</button>
+          <div className="poke-id"> {pokemon ? '#' + pokemon.id + ' ' : ''}</div>
+          <div className="poke-name">{pokemon ? pokemon.name : ''}</div>
+          <img className="poke-photo" src={pokemon ? pokemon.sprites.other['official-artwork'].front_default : ''} alt="" />
+          {/* <button onClick={() => handleShowState()}>Show pokemon in console</button>
+          <button onClick={() => handleTest()}>Fire provider handle</button> */}
         </StyledPokemonContainer>
       </StyledGetPokemonWrapper>
     </>
