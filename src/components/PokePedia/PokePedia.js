@@ -6,6 +6,7 @@ const PokePedia = () => {
   // const { handleTest } = useContext(PokemonsContext);
 
   const [pokemon, setPokemons] = useState(null);
+  const [loading, setLoaded] = useState(false);
 
   const handleGetRandomPokemon = () => {
     function getRandomArbitrary(min, max) {
@@ -15,6 +16,8 @@ const PokePedia = () => {
     let randomPokemon = getRandomArbitrary(1, 898);
 
     const fetchData = async () => {
+      setPokemons(null);
+      setLoaded(false);
       let res = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomPokemon}/`);
       let response = await res.json();
       setPokemons(response);
@@ -31,9 +34,14 @@ const PokePedia = () => {
       <StyledGetPokemonWrapper>
         <StyledGetPokemonButton onClick={() => handleGetRandomPokemon()}>Get random pokemon</StyledGetPokemonButton>
         <StyledPokemonContainer>
-          <div className="poke-id"> {pokemon ? '#' + pokemon.id + ' ' : ''}</div>
-          <div className="poke-name">{pokemon ? pokemon.name : ''}</div>
-          <img className="poke-photo" src={pokemon ? pokemon.sprites.other['official-artwork'].front_default : ''} alt="" />
+          <div className="poke-id"> {pokemon && loading ? '#' + pokemon.id + ' ' : ''}</div>
+          <div className="poke-name">{pokemon && loading ? pokemon.name : 'Loading...'}</div>
+          <img
+            className="poke-photo"
+            onLoad={() => setLoaded(true)}
+            src={pokemon ? pokemon.sprites.other['official-artwork'].front_default : ''}
+            alt=""
+          />
           {/* <button onClick={() => handleShowState()}>Show pokemon in console</button>
           <button onClick={() => handleTest()}>Fire provider handle</button> */}
         </StyledPokemonContainer>
