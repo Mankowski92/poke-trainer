@@ -44,7 +44,7 @@ const PokePedia = () => {
         <StyledPokemonContainer>
           {console.log(pokemon)}
           <div className="poke-id"> {pokemon && loading ? '#' + pokemon.id + ' ' : ''}</div>
-          <div className="poke-name">{pokemon && loading ? pokemon.name : loadingRequired ? 'Loading...' : null}</div>
+          <div className="poke-name">{pokemon && loading ? pokemon.name : loadingRequired ? <div className="loading">loading...</div> : null}</div>
           <img className="poke-photo" onLoad={() => setLoaded(true)} src={pokemon ? pokemon.artwork : ''} alt="" />
           {/* <button onClick={() => handleShowState()}>Show pokemon in console</button>
           <button onClick={() => handleTest()}>Fire provider handle</button> */}

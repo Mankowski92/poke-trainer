@@ -7,6 +7,7 @@ export const StyledGetPokemonWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   min-height: 80vh;
+  border-radius: 15px;
 `;
 
 export const StyledGetPokemonButton = styled.button`
@@ -22,15 +23,13 @@ export const StyledGetPokemonButton = styled.button`
 `;
 
 export const StyledPokemonContainer = styled.div`
-  background-color: ${({ theme }) => theme.colors.red};
-  width: 90%;
-  height: auto;
+  background-color: ${({ theme }) => theme.colors.white};
   margin-bottom: 2.5rem;
   display: flex;
   flex-direction: column;
-  justyfi-content: center;
+  justify-content: center;
   align-items: center;
-  min-height: calc(80vh - 150px);
+  border-radius: 25px;
 
   .poke-name {
     font-size: ${({ theme }) => theme.fontSize.xxl};
@@ -44,5 +43,10 @@ export const StyledPokemonContainer = styled.div`
   .poke-photo {
     // width: 70%;
     // height: 70%;
+  }
+
+  .loading {
+    color: ${({ theme }) => theme.colors.blue};
+    padding: 15px;
   }
 `;
