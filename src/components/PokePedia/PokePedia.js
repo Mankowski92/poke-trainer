@@ -6,8 +6,12 @@ const PokePedia = () => {
   // const { handleTest } = useContext(PokemonsContext);
 
   const [pokemon, setPokemons] = useState(null);
-  const [loading, setLoaded] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
   const [loadingRequired, setLoadingRequired] = useState(false);
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
   const handleGetRandomPokemon = () => {
     function getRandomArbitrary(min, max) {
@@ -19,7 +23,7 @@ const PokePedia = () => {
     const fetchData = async () => {
       setLoadingRequired(true);
       setPokemons(null);
-      setLoaded(false);
+      setImgLoaded(false);
       let res = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomPokemon}/`);
       let response = await res.json();
 
@@ -48,11 +52,13 @@ const PokePedia = () => {
         <StyledGetPokemonButton onClick={() => handleGetRandomPokemon()}>Get random pokemon</StyledGetPokemonButton>
         <StyledPokemonContainer>
           {console.log(pokemon)}
-          <div className="poke-id"> {pokemon && loading ? '#' + pokemon.id + ' ' : ''}</div>
-          <div className="poke-name">{pokemon && loading ? pokemon.name : loadingRequired ? <div className="loading">loading...</div> : null}</div>
-          <img className="poke-photo" onLoad={() => setLoaded(true)} src={pokemon ? pokemon.artwork : ''} alt="" />
-          <div className="poke-types">
-            {pokemon && loading
+          <div className="poke-id"> {pokemon && imgLoaded ? '#' + pokemon.id + ' ' : ''}</div>
+          <div className="poke-name">
+            {pokemon && imgLoaded ? capitalizeFirstLetter(pokemon.name) : loadingRequired ? <div className="loading">loading...</div> : null}
+          </div>
+          <img className="poke-photo" onLoad={() => setImgLoaded(true)} src={pokemon ? pokemon.artwork : ''} alt="" />
+          <div className={imgLoaded ? 'poke-types' : ''}>
+            {pokemon && imgLoaded
               ? pokemon.types.map((element, index) => {
                   return (
                     <div className={`poke-types__each-type ${element}`} key={index}>
@@ -60,7 +66,7 @@ const PokePedia = () => {
                     </div>
                   );
                 })
-              : ''}
+              : null}
           </div>
           {/* <button onClick={() => handleTest()}>Fire provider handle</button> */}
         </StyledPokemonContainer>

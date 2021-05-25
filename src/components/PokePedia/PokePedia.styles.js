@@ -50,8 +50,13 @@ export const StyledPokemonContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    padding: 7px;
     &__each-type {
       margin: 10px;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: ${({ theme }) => theme.fontSize.m};
     }
     .fire {
       color: ${({ theme }) => theme.colors.types.fire};
@@ -87,7 +92,7 @@ export const StyledPokemonContainer = styled.div`
     }
     .fighting {
       color: ${({ theme }) => theme.colors.types.fighting};
-      background-color: ${({ theme }) => theme.colors.types.figthing}33;
+      background-color: ${({ theme }) => theme.colors.types.fighting}33;
     }
     .psychic {
       color: ${({ theme }) => theme.colors.types.psychic};
