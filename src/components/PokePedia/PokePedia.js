@@ -51,10 +51,14 @@ const PokePedia = () => {
           <div className="poke-id"> {pokemon && loading ? '#' + pokemon.id + ' ' : ''}</div>
           <div className="poke-name">{pokemon && loading ? pokemon.name : loadingRequired ? <div className="loading">loading...</div> : null}</div>
           <img className="poke-photo" onLoad={() => setLoaded(true)} src={pokemon ? pokemon.artwork : ''} alt="" />
-          <div>
+          <div className="poke-types">
             {pokemon && loading
               ? pokemon.types.map((element, index) => {
-                  return <div key={index}>{element}</div>;
+                  return (
+                    <div className={`poke-types__each-type ${element}`} key={index}>
+                      {element}
+                    </div>
+                  );
                 })
               : ''}
           </div>
