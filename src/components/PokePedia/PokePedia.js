@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { StyledGetPokemonButton, StyledPokemonContainer, StyledGetPokemonWrapper } from './PokePedia.styles';
 // import { PokemonsContext } from '../../providers/PokemonsProvider';
 
@@ -22,20 +22,25 @@ const PokePedia = () => {
       setLoaded(false);
       let res = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomPokemon}/`);
       let response = await res.json();
+
+      let typesArray = [];
+
+      response.types.forEach((item) => {
+        typesArray.push(item.type.name);
+      });
+
+      console.log(response);
       let pokemon = {
         id: response.id,
         name: response.name,
         artwork: response.sprites.other['official-artwork'].front_default,
         stats: response.stats,
+        types: typesArray,
       };
       setPokemons(pokemon);
     };
     fetchData();
   };
-
-  // const handleShowState = () => {
-  //   console.log(pokemon);
-  // };
 
   return (
     <>
@@ -46,8 +51,14 @@ const PokePedia = () => {
           <div className="poke-id"> {pokemon && loading ? '#' + pokemon.id + ' ' : ''}</div>
           <div className="poke-name">{pokemon && loading ? pokemon.name : loadingRequired ? <div className="loading">loading...</div> : null}</div>
           <img className="poke-photo" onLoad={() => setLoaded(true)} src={pokemon ? pokemon.artwork : ''} alt="" />
-          {/* <button onClick={() => handleShowState()}>Show pokemon in console</button>
-          <button onClick={() => handleTest()}>Fire provider handle</button> */}
+          <div>
+            {pokemon && loading
+              ? pokemon.types.map((element, index) => {
+                  return <div key={index}>{element}</div>;
+                })
+              : ''}
+          </div>
+          {/* <button onClick={() => handleTest()}>Fire provider handle</button> */}
         </StyledPokemonContainer>
       </StyledGetPokemonWrapper>
     </>
