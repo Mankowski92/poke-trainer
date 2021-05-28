@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { StyledPokemonContainer } from './RandomPokemon.styles';
-import { PokemonsContext } from '../../providers/PokemonsProvider';
+import { PokemonsContext } from '../../../providers/PokemonsProvider';
 
 const RandomPokemon = () => {
   const { capitalizeFirstLetter } = useContext(PokemonsContext);

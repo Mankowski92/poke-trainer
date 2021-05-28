@@ -1,12 +1,12 @@
 import React from 'react';
-import PokePedia from '../components/PokePedia/PokePedia';
+import PokedexContainer from '../components/PokedexContainer/PokedexContainer';
 import Nav from '../components/Nav/Nav';
 
 const Pokedex = () => {
   return (
     <>
       <Nav />
-      <PokePedia />
+      <PokedexContainer />
     </>
   );
 };

@@ -1,13 +1,13 @@
 import React from 'react';
 import Nav from '../components/Nav/Nav';
-import PikachuBg from '../components/PikachuBgWraper/PikachuBgWraper';
+import DashboardContainer from '../components/DashboardContainer/DashboardContainer';
 
 const Dashboard = () => {
   return (
     <>
-      <PikachuBg>
+      <DashboardContainer>
         <Nav />
-      </PikachuBg>
+      </DashboardContainer>
     </>
   );
 };
