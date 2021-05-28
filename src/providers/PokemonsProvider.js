@@ -1,37 +1,84 @@
 import React, { useState, useEffect } from 'react';
 
 export const PokemonsContext = React.createContext({
-  handleShowRandomPokemon: () => {},
-  handleSetFalseRandomPokemon: () => {},
-  isRandomPokemon: false,
-  isTestComponent: '',
+  handleGetPokemonList: () => {},
+  handleGetPokemon: () => {},
+  handleGetRandomPokemon: () => {},
+  capitalizeFirstLetter: () => {},
+  pokemon: {},
+  imgLoaded: false,
+  loadingRequired: false,
 });
 
 const PokemonsProvider = ({ children }) => {
-  useEffect(() => {
-    // Update the document title using the browser API
-  });
+  useEffect(() => {});
 
-  const [isRandomPokemon, setRandomPokemon] = useState(false);
-  const [isTestComponent, setTestComponent] = useState(false);
+  const [pokemon, setPokemons] = useState(null);
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const [loadingRequired, setLoadingRequired] = useState(false);
 
-  const handleShowRandomPokemon = () => {
-    console.log('setRandomPokemon === TRUE');
-    setRandomPokemon(true);
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  // handle responsible for getting  random pokemon in pokedex
+  const handleGetRandomPokemon = () => {
+    function getRandomArbitrary(min, max) {
+      return Math.floor(Math.random() * (max - min) + min);
+    }
+
+    let randomPokemon = getRandomArbitrary(1, 898);
+
+    const fetchData = async () => {
+      setLoadingRequired(true);
+      setPokemons(null);
+      setImgLoaded(false);
+      let res = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomPokemon}/`);
+      let response = await res.json();
+
+      let typesArray = [];
+
+      response.types.forEach((item) => {
+        typesArray.push(item.type.name);
+      });
+
+      console.log(response);
+      let pokemon = {
+        id: response.id,
+        name: response.name,
+        artwork: response.sprites.other['official-artwork'].front_default,
+        stats: response.stats,
+        types: typesArray,
+      };
+      setPokemons(pokemon);
+    };
+    fetchData();
   };
 
-  const handleSetFalseRandomPokemon = () => {
-    console.log('setRandomPokemon === FALSE');
-    setRandomPokemon(false);
+  const handleGetPokemonList = () => {
+    console.log('POKEMON LIST');
+  };
+
+  const handleGetPokemon = () => {
+    console.log('POKEMON FORM');
+  };
+
+  const handleSetImgLoaded = () => {
+    console.log('setImgLoaded === TRUE');
+    setImgLoaded(true);
   };
 
   return (
     <PokemonsContext.Provider
       value={{
-        handleShowRandomPokemon,
-        isRandomPokemon,
-        isTestComponent,
-        handleSetFalseRandomPokemon,
+        handleGetRandomPokemon,
+        handleGetPokemonList,
+        handleGetPokemon,
+        capitalizeFirstLetter,
+        handleSetImgLoaded,
+        pokemon,
+        imgLoaded,
+        loadingRequired,
       }}
     >
       {children}

@@ -1,16 +1,18 @@
 import styled from 'styled-components';
 
-export const StyledGetPokemonButton = styled.button`
-  width: 20%;
-  min-width: 200px;
-  color: ${({ theme }) => theme.colors.red};
-  margin: 1.5rem;
-  border-radius: 8px;
-  border: 2px solid ${({ theme }) => theme.colors.blue};
-  font-size: ${({ theme }) => theme.fontSize.m};
-  background-color: ${({ theme }) => theme.colors.lblue};
-  font-weight: 700;
-`;
+//button moved to PokedexNav comonent
+
+// export const StyledGetPokemonButton = styled.button`
+//   width: 20%;
+//   min-width: 200px;
+//   color: ${({ theme }) => theme.colors.red};
+//   margin: 1.5rem;
+//   border-radius: 8px;
+//   border: 2px solid ${({ theme }) => theme.colors.blue};
+//   font-size: ${({ theme }) => theme.fontSize.m};
+//   background-color: ${({ theme }) => theme.colors.lblue};
+//   font-weight: 700;
+// `;
 
 export const StyledPokemonContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.white};

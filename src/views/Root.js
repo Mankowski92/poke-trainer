@@ -8,36 +8,32 @@ import Dashboard from 'views/Dashboard';
 import Pokedex from 'views/Pokedex';
 import Hunting from 'views/Hunting';
 import Login from 'views/Login';
-import PokemonsProvider from 'providers/PokemonsProvider';
-
 const Root = () => {
   const location = useLocation();
 
+  // Use effect made for temp logging actual path to further use
   useEffect(() => {
-    console.log('Location changed');
+    console.log('Location changed for', location.pathname);
   }, [location]);
-
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <PokemonsProvider>
-        <Wrapper>
-          <Switch>
-            <Route path="/pokedex">
-              <Pokedex />
-            </Route>
-            <Route path="/hunting">
-              <Hunting />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route strict path="/">
-              <Dashboard />
-            </Route>
-          </Switch>
-        </Wrapper>
-      </PokemonsProvider>
+      <Wrapper>
+        <Switch>
+          <Route path="/pokedex">
+            <Pokedex />
+          </Route>
+          <Route path="/hunting">
+            <Hunting />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route strict path="/">
+            <Dashboard />
+          </Route>
+        </Switch>
+      </Wrapper>
     </ThemeProvider>
   );
 };
