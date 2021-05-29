@@ -5,8 +5,10 @@ export const StyledPokedexButtonsContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin: 20px;
 `;
 export const StyledButton = styled.button`
   width: 200px;
   height: 50px;
+  margin: 0 12px;
 `;

@@ -5,7 +5,10 @@ export const PokemonsContext = React.createContext({
   handleGetPokemon: () => {},
   handleGetRandomPokemon: () => {},
   capitalizeFirstLetter: () => {},
+  handleSetImgLoaded: () => {},
+  currentPokedexOption: '',
   pokemon: {},
+  pokemonList: [],
   imgLoaded: false,
   loadingRequired: false,
 });
@@ -13,7 +16,9 @@ export const PokemonsContext = React.createContext({
 const PokemonsProvider = ({ children }) => {
   useEffect(() => {});
 
+  const [currentPokedexOption, setCurrentPokedexOption] = useState(null);
   const [pokemon, setPokemons] = useState(null);
+  const [pokemonList, setPokemonList] = useState(null);
   const [imgLoaded, setImgLoaded] = useState(false);
   const [loadingRequired, setLoadingRequired] = useState(false);
 
@@ -21,8 +26,17 @@ const PokemonsProvider = ({ children }) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+  // handle responsible for PokemonList
+  const handleGetPokemonList = () => {
+    setCurrentPokedexOption('pokemonList');
+    //temporary seting PokemonList. Need to be changed fot fetch
+    setPokemonList(['pikachu', 'charmander', 'bulbasaur', 'diglet', 'snorlax', 'ratata']);
+  };
+
   // handle responsible for getting  random pokemon in pokedex
   const handleGetRandomPokemon = () => {
+    setCurrentPokedexOption('randomPokemon');
+
     function getRandomArbitrary(min, max) {
       return Math.floor(Math.random() * (max - min) + min);
     }
@@ -55,16 +69,11 @@ const PokemonsProvider = ({ children }) => {
     fetchData();
   };
 
-  const handleGetPokemonList = () => {
-    console.log('POKEMON LIST');
-  };
-
   const handleGetPokemon = () => {
     console.log('POKEMON FORM');
   };
 
   const handleSetImgLoaded = () => {
-    console.log('setImgLoaded === TRUE');
     setImgLoaded(true);
   };
 
@@ -72,11 +81,13 @@ const PokemonsProvider = ({ children }) => {
     <PokemonsContext.Provider
       value={{
         handleGetRandomPokemon,
-        handleGetPokemonList,
         handleGetPokemon,
+        handleGetPokemonList,
         capitalizeFirstLetter,
         handleSetImgLoaded,
+        currentPokedexOption,
         pokemon,
+        pokemonList,
         imgLoaded,
         loadingRequired,
       }}
