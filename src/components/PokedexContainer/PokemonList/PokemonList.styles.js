@@ -10,7 +10,7 @@ export const StyledPokemonListContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   .each-pokemon-container {
-    background-color: blue;
+    border: 2px solid black;
     width: 30%;
     height: 45%;
   }

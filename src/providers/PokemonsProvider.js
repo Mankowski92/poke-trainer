@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 
 export const PokemonsContext = React.createContext({
   handleGetPokemonList: () => {},
-  handleGetPokemon: () => {},
+  handleFindPokemon: () => {},
   handleGetRandomPokemon: () => {},
   capitalizeFirstLetter: () => {},
   handleSetImgLoaded: () => {},
+  resetPokedexOptions: () => {},
   currentPokedexOption: '',
   pokemon: {},
   pokemonList: [],
@@ -15,6 +16,8 @@ export const PokemonsContext = React.createContext({
 
 const PokemonsProvider = ({ children }) => {
   useEffect(() => {});
+
+  const API = 'https://pokeapi.co/api/v2/pokemon';
 
   const [currentPokedexOption, setCurrentPokedexOption] = useState(null);
   const [pokemon, setPokemons] = useState(null);
@@ -29,8 +32,22 @@ const PokemonsProvider = ({ children }) => {
   // handle responsible for PokemonList
   const handleGetPokemonList = () => {
     setCurrentPokedexOption('pokemonList');
-    //temporary seting PokemonList. Need to be changed fot fetch
-    setPokemonList(['pikachu', 'charmander', 'bulbasaur', 'diglet', 'snorlax', 'ratata']);
+
+    const fetchData = async () => {
+      let res = await fetch(`${API}?offset=0&limit=6/`);
+      let response = await res.json();
+
+      let fetchedPokemons = [];
+
+      response.results.forEach((item) => {
+        fetchedPokemons.push(item.name);
+      });
+
+      console.log('RESPONSE FINDED POKEMONS: ', fetchedPokemons);
+      setPokemonList(fetchedPokemons);
+    };
+
+    fetchData();
   };
 
   // handle responsible for getting  random pokemon in pokedex
@@ -47,7 +64,7 @@ const PokemonsProvider = ({ children }) => {
       setLoadingRequired(true);
       setPokemons(null);
       setImgLoaded(false);
-      let res = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomPokemon}/`);
+      let res = await fetch(`${API}/${randomPokemon}/`);
       let response = await res.json();
 
       let typesArray = [];
@@ -56,7 +73,7 @@ const PokemonsProvider = ({ children }) => {
         typesArray.push(item.type.name);
       });
 
-      console.log(response);
+      console.log('pokemon object from api for random pokemon', response);
       let pokemon = {
         id: response.id,
         name: response.name,
@@ -69,7 +86,8 @@ const PokemonsProvider = ({ children }) => {
     fetchData();
   };
 
-  const handleGetPokemon = () => {
+  const handleFindPokemon = () => {
+    setCurrentPokedexOption('findPokemon');
     console.log('POKEMON FORM');
   };
 
@@ -77,14 +95,19 @@ const PokemonsProvider = ({ children }) => {
     setImgLoaded(true);
   };
 
+  const resetPokedexOptions = () => {
+    setCurrentPokedexOption(null);
+  };
+
   return (
     <PokemonsContext.Provider
       value={{
         handleGetRandomPokemon,
-        handleGetPokemon,
+        handleFindPokemon,
         handleGetPokemonList,
         capitalizeFirstLetter,
         handleSetImgLoaded,
+        resetPokedexOptions,
         currentPokedexOption,
         pokemon,
         pokemonList,

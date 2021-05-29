@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'assets/styles/GlobalStyle';
 import { theme } from 'assets/styles/theme';
@@ -8,12 +8,21 @@ import Dashboard from 'views/Dashboard';
 import Pokedex from 'views/Pokedex';
 import Hunting from 'views/Hunting';
 import Login from 'views/Login';
+import { PokemonsContext } from '../providers/PokemonsProvider';
 const Root = () => {
   const location = useLocation();
+
+  const ctx = useContext(PokemonsContext);
+
+  const { resetPokedexOptions } = useContext(PokemonsContext);
 
   // Use effect made for temp logging actual path to further use
   useEffect(() => {
     console.log('Location changed for', location.pathname);
+    if (ctx.currentPokedexOption) {
+      resetPokedexOptions();
+      console.log('Reset of current pokedex handle fired (list/random/find)');
+    }
   }, [location]);
   return (
     <ThemeProvider theme={theme}>

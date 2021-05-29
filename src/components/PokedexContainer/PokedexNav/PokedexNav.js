@@ -3,14 +3,14 @@ import { StyledPokedexButtonsContainer, StyledButton } from './PokedexNav.styles
 import { PokemonsContext } from '../../../providers/PokemonsProvider';
 
 const PokedexNav = () => {
-  const { handleGetRandomPokemon, handleGetPokemonList, handleGetPokemon } = useContext(PokemonsContext);
+  const { handleGetRandomPokemon, handleGetPokemonList, handleFindPokemon } = useContext(PokemonsContext);
 
   return (
     <>
       <StyledPokedexButtonsContainer>
         <StyledButton onClick={() => handleGetPokemonList()}>Pokemons List</StyledButton>
         <StyledButton onClick={() => handleGetRandomPokemon()}>Get Random Pokemon</StyledButton>
-        <StyledButton onClick={() => handleGetPokemon()}>Find Pokemon</StyledButton>
+        <StyledButton onClick={() => handleFindPokemon()}>Find Pokemon</StyledButton>
       </StyledPokedexButtonsContainer>
     </>
   );
