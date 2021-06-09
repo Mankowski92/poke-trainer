@@ -9,25 +9,43 @@ export const StyledPokemonListContainer = styled.div`
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
+  .render-info {
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+  }
   .each-pokemon-container {
     border: 2px solid black;
     width: 30%;
     height: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    .poke-name {
+      font-size: ${({ theme }) => theme.fontSize.xxl};
+      line-height: 1;
+    }
+    .poke-id {
+      color: grey;
+    }
+    .poke-photo {
+      max-width: 100%;
+      max-height: calc(100% - 65px);
+    }
   }
-
-  //   .poke-name {
-  //     font-size: ${({ theme }) => theme.fontSize.xxl};
-  //     line-height: 1;
-  //   }
-
-  //   .poke-id {
-  //     color: grey;
-  //   }
-
-  //   .poke-photo {
-  //     // width: 70%;
-  //     // height: 70%;
-  //   }
+  .buttons {
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    button {
+      width: 25%;
+    }
+    .rerender-button {
+    }
+  }
 
   //   .poke-types {
   //     width: 100%;

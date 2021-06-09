@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 export const PokemonsContext = React.createContext({
+  handleTest: () => {},
   handleGetPokemonList: () => {},
   handleFindPokemon: () => {},
   handleGetRandomPokemon: () => {},
@@ -12,6 +13,7 @@ export const PokemonsContext = React.createContext({
   pokemonList: [],
   imgLoaded: false,
   loadingRequired: false,
+  loading: true,
 });
 
 const PokemonsProvider = ({ children }) => {
@@ -21,9 +23,11 @@ const PokemonsProvider = ({ children }) => {
 
   const [currentPokedexOption, setCurrentPokedexOption] = useState(null);
   const [pokemon, setPokemons] = useState(null);
-  const [pokemonList, setPokemonList] = useState([]);
+  const [pokemonList, setPokemonList] = useState(null);
   const [imgLoaded, setImgLoaded] = useState(false);
   const [loadingRequired, setLoadingRequired] = useState(false);
+
+  const [loading, setLoading] = useState(true);
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -36,28 +40,19 @@ const PokemonsProvider = ({ children }) => {
   // handle responsible for PokemonList
   const handleGetPokemonList = () => {
     setCurrentPokedexOption('pokemonList');
-    const fetchData = async () => {
+    const fetchPokemons = async () => {
       let res = await fetch(`${API}?offset=0&limit=6/`);
       let response = await res.json();
 
-      response.results.forEach((item) => {
-        const fetchDeeper = async () => {
-          let res = await fetch(`${item.url}`);
-          let response = await res.json();
-
-          fetchedPokemons.push(response);
-        };
-        fetchDeeper();
-      });
-      setPokemonList(fetchedPokemons);
-      return;
+      const resolvePokemons = await Promise.all(
+        response.results.map(async (singlePokemon) => {
+          const res = await fetch(singlePokemon.url);
+          return res.json();
+        })
+      );
+      setPokemonList(resolvePokemons);
     };
-
-    async function waitForFetchCompelete() {
-      await fetchData().then(console.log('LISTA:', pokemonList));
-    }
-
-    waitForFetchCompelete();
+    fetchPokemons();
   };
 
   // handle responsible for getting  random pokemon in pokedex
@@ -98,6 +93,7 @@ const PokemonsProvider = ({ children }) => {
 
   const handleFindPokemon = () => {
     setCurrentPokedexOption('findPokemon');
+    console.log('POKEMON FORM');
   };
 
   const handleSetImgLoaded = () => {
@@ -106,6 +102,10 @@ const PokemonsProvider = ({ children }) => {
 
   const resetPokedexOptions = () => {
     setCurrentPokedexOption(null);
+  };
+
+  const handleTest = () => {
+    console.log('TEST');
   };
 
   return (
@@ -122,6 +122,7 @@ const PokemonsProvider = ({ children }) => {
         pokemonList,
         imgLoaded,
         loadingRequired,
+        loading,
       }}
     >
       {children}
