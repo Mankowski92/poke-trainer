@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export const PokemonsContext = React.createContext({
   handleTest: () => {},
@@ -41,6 +41,9 @@ const PokemonsProvider = ({ children }) => {
   const handleGetPokemonList = () => {
     setCurrentPokedexOption('pokemonList');
     const fetchPokemons = async () => {
+      //offset need to be change for variable
+      //to be able to navigate forward and backward with pokemon list
+      //and have a ability to put own offset
       let res = await fetch(`${API}?offset=0&limit=6/`);
       let response = await res.json();
 

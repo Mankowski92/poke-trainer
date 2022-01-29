@@ -1,4 +1,4 @@
-import React, { useContext, useState, useCallback } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import { StyledPokemonListContainer } from './PokemonList.styles';
 import { PokemonsContext } from '../../../providers/PokemonsProvider';
 
@@ -19,13 +19,17 @@ const PokemonList = () => {
               <div className="each-pokemon-container" key={i}>
                 <div className="poke-id">{item.id}</div>
                 <div className="poke-name">{item.name}</div>
-                <img className="poke-photo" onLoad={() => handleSetImgLoaded()} src={item ? item.artwork : ''} alt="" />
+                <img
+                  className="poke-photo"
+                  onLoad={() => handleSetImgLoaded()}
+                  src={item ? item.sprites.other['official-artwork'].front_default : ''}
+                  alt="Pokemon img"
+                />
               </div>
             ))
           ) : (
             <div className="render-info">Hit rerender button</div>
           )}
-          {/* {ctx.pokemonList ? <div>{ctx.pokemonList[0].name}</div> : <div>DUPPSKO</div>} */}
           <div className="buttons">
             <button onClick={() => console.log('PREVOIUS')}>Previous</button>
             <button className="rerender-button" onClick={() => forceUpdate()}>
