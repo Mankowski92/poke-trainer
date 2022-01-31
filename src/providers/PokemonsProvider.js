@@ -37,18 +37,30 @@ const PokemonsProvider = ({ children }) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  useEffect(() => {}, []);
+  //component did mount example
+  // useEffect(() => {
+  //   setXYZ(XYZ => (XYZ + 1));
+  // }, []);
+
+  useEffect(() => {
+    console.log('!!!!!!' + offset);
+    handleGetPokemonList();
+  }, [offset]);
 
   const handleIncrementOffset = () => {
-    console.log('NEXT FROM POKE PROVIDER');
+    if (offset >= 1111) {
+      alert('This is the very end of the pokemons list');
+      return;
+    }
     setOffset(offset + 6);
-    handleGetPokemonList();
   };
 
   const handleDecrementOffset = () => {
-    console.log('PREVOIUS FROM POKE PROVIDER');
+    if (offset === 0) {
+      alert('This is the very beginning of the pokemons list');
+      return;
+    }
     setOffset(offset - 6);
-    handleGetPokemonList();
   };
 
   // handle responsible for PokemonList

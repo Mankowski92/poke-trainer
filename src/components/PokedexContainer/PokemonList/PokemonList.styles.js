@@ -10,7 +10,8 @@ export const StyledPokemonListContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   border-radius: 25px;
-  padding: 10px 10px 30px 10px;
+  padding: 10px;
+  margin-bottom: 20px;
   .render-info {
     width: 100%;
     text-align: center;
