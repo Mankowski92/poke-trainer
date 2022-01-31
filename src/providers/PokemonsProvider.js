@@ -9,6 +9,7 @@ export const PokemonsContext = React.createContext({
   resetPokedexOptions: () => {},
   handleIncrementOffset: () => {},
   handleDecrementOffset: () => {},
+  handleSubmitCustomOffset: () => {},
 
   currentPokedexOption: '',
   pokemon: {},
@@ -20,8 +21,6 @@ export const PokemonsContext = React.createContext({
 });
 
 const PokemonsProvider = ({ children }) => {
-  useEffect(() => {});
-
   const API = 'https://pokeapi.co/api/v2/pokemon';
 
   const [currentPokedexOption, setCurrentPokedexOption] = useState(null);
@@ -30,20 +29,19 @@ const PokemonsProvider = ({ children }) => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const [loadingRequired, setLoadingRequired] = useState(false);
   const [offset, setOffset] = useState(0);
-
+  const [customOffset, setCustomOffset] = useState(0);
   const [loading, setLoading] = useState(true);
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  //component did mount example
+  //component did mount
   // useEffect(() => {
   //   setXYZ(XYZ => (XYZ + 1));
   // }, []);
 
   useEffect(() => {
-    console.log('!!!!!!' + offset);
     handleGetPokemonList();
   }, [offset]);
 
@@ -61,6 +59,12 @@ const PokemonsProvider = ({ children }) => {
       return;
     }
     setOffset(offset - 6);
+  };
+
+  const handleSubmitCustomOffset = (event) => {
+    event.preventDefault();
+
+    setOffset(event.target.value);
   };
 
   // handle responsible for PokemonList
@@ -141,6 +145,7 @@ const PokemonsProvider = ({ children }) => {
         resetPokedexOptions,
         handleIncrementOffset,
         handleDecrementOffset,
+        handleSubmitCustomOffset,
         currentPokedexOption,
         pokemon,
         pokemonList,

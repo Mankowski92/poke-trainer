@@ -8,6 +8,7 @@ const PokemonList = () => {
   const { handleSetImgLoaded } = useContext(PokemonsContext);
   const { handleIncrementOffset } = useContext(PokemonsContext);
   const { handleDecrementOffset } = useContext(PokemonsContext);
+  const { handleSubmitCustomOffset } = useContext(PokemonsContext);
 
   return (
     <>
@@ -33,6 +34,10 @@ const PokemonList = () => {
             <div className="buttons">
               <button onClick={() => handleDecrementOffset()}>Previous</button>
               <button onClick={() => handleIncrementOffset()}>Next</button>
+              <form className="custom-offset-form">
+                <span> Default offset: </span>
+                <input type="number" value={ctx.offset} onChange={handleSubmitCustomOffset} />
+              </form>
             </div>
           ) : null}
         </StyledPokemonListContainer>

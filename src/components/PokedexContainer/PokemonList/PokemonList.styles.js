@@ -49,6 +49,16 @@ export const StyledPokemonListContainer = styled.div`
       width: 25%;
       margin: 0 1rem;
     }
+    .custom-offset-form {
+      width: 50%;
+      display: flex;
+      span {
+        margin-right: 8px;
+      }
+      .offset-submit {
+        margin-left: 8px;
+      }
+    }
   }
 
   .loading {
