@@ -3,8 +3,6 @@ import { StyledFindPokemonContainer } from './FindPokemon.styles';
 import { PokemonsContext } from '../../../providers/PokemonsProvider';
 
 const FindPokemon = () => {
-  const { capitalizeFirstLetter } = useContext(PokemonsContext);
-
   const ctx = useContext(PokemonsContext);
 
   return (

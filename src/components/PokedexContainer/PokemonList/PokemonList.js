@@ -1,14 +1,13 @@
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { StyledPokemonListContainer } from './PokemonList.styles';
 import { PokemonsContext } from '../../../providers/PokemonsProvider';
 
 const PokemonList = () => {
   const ctx = useContext(PokemonsContext);
 
-  const [, updateState] = useState();
-  const forceUpdate = useCallback(() => updateState({}), []);
-
   const { handleSetImgLoaded } = useContext(PokemonsContext);
+  const { handleIncrementOffset } = useContext(PokemonsContext);
+  const { handleDecrementOffset } = useContext(PokemonsContext);
 
   return (
     <>
@@ -28,15 +27,14 @@ const PokemonList = () => {
               </div>
             ))
           ) : (
-            <div className="render-info">Hit rerender button</div>
+            <div className="loading">loading...</div>
           )}
-          <div className="buttons">
-            <button onClick={() => console.log('PREVOIUS')}>Previous</button>
-            <button className="rerender-button" onClick={() => forceUpdate()}>
-              RERENDER
-            </button>
-            <button onClick={() => console.log('NEXT')}>Next</button>
-          </div>
+          {ctx.pokemonList && ctx.pokemonList.length ? (
+            <div className="buttons">
+              <button onClick={() => handleDecrementOffset()}>Previous</button>
+              <button onClick={() => handleIncrementOffset()}>Next</button>
+            </div>
+          ) : null}
         </StyledPokemonListContainer>
       ) : null}
     </>

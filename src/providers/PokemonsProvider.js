@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react';
 
 export const PokemonsContext = React.createContext({
-  handleTest: () => {},
   handleGetPokemonList: () => {},
   handleFindPokemon: () => {},
   handleGetRandomPokemon: () => {},
   capitalizeFirstLetter: () => {},
   handleSetImgLoaded: () => {},
   resetPokedexOptions: () => {},
+  handleIncrementOffset: () => {},
+  handleDecrementOffset: () => {},
+
   currentPokedexOption: '',
   pokemon: {},
   pokemonList: [],
   imgLoaded: false,
   loadingRequired: false,
   loading: true,
+  offset: 0,
 });
 
 const PokemonsProvider = ({ children }) => {
@@ -26,6 +29,7 @@ const PokemonsProvider = ({ children }) => {
   const [pokemonList, setPokemonList] = useState(null);
   const [imgLoaded, setImgLoaded] = useState(false);
   const [loadingRequired, setLoadingRequired] = useState(false);
+  const [offset, setOffset] = useState(0);
 
   const [loading, setLoading] = useState(true);
 
@@ -33,18 +37,25 @@ const PokemonsProvider = ({ children }) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  let fetchedPokemons = [];
-
   useEffect(() => {}, []);
+
+  const handleIncrementOffset = () => {
+    console.log('NEXT FROM POKE PROVIDER');
+    setOffset(offset + 6);
+    handleGetPokemonList();
+  };
+
+  const handleDecrementOffset = () => {
+    console.log('PREVOIUS FROM POKE PROVIDER');
+    setOffset(offset - 6);
+    handleGetPokemonList();
+  };
 
   // handle responsible for PokemonList
   const handleGetPokemonList = () => {
     setCurrentPokedexOption('pokemonList');
     const fetchPokemons = async () => {
-      //offset need to be change for variable
-      //to be able to navigate forward and backward with pokemon list
-      //and have a ability to put own offset
-      let res = await fetch(`${API}?offset=0&limit=6/`);
+      let res = await fetch(`${API}?offset=${offset}&limit=6/`);
       let response = await res.json();
 
       const resolvePokemons = await Promise.all(
@@ -107,10 +118,6 @@ const PokemonsProvider = ({ children }) => {
     setCurrentPokedexOption(null);
   };
 
-  const handleTest = () => {
-    console.log('TEST');
-  };
-
   return (
     <PokemonsContext.Provider
       value={{
@@ -120,12 +127,15 @@ const PokemonsProvider = ({ children }) => {
         capitalizeFirstLetter,
         handleSetImgLoaded,
         resetPokedexOptions,
+        handleIncrementOffset,
+        handleDecrementOffset,
         currentPokedexOption,
         pokemon,
         pokemonList,
         imgLoaded,
         loadingRequired,
         loading,
+        offset,
       }}
     >
       {children}

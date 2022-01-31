@@ -3,12 +3,14 @@ import styled from 'styled-components';
 export const StyledPokemonListContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
   width: 92%;
-  height: calc(100vh - 310px);
+  height: calc(100vh - 260px);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  border-radius: 25px;
+  padding: 10px 10px 30px 10px;
   .render-info {
     width: 100%;
     text-align: center;
@@ -18,6 +20,7 @@ export const StyledPokemonListContainer = styled.div`
     border: 2px solid black;
     width: 30%;
     height: 45%;
+    margin-bottom: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -36,15 +39,22 @@ export const StyledPokemonListContainer = styled.div`
     }
   }
   .buttons {
-    width: 70%;
+    width: 80%;
+    margin: 10px auto 0 auto;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     button {
       width: 25%;
+      margin: 0 1rem;
     }
-    .rerender-button {
-    }
+  }
+
+  .loading {
+    color: ${({ theme }) => theme.colors.blue};
+    padding: 15px;
+    font-size: ${({ theme }) => theme.fontSize.xxl};
+    margin: 0 auto;
   }
 
   //   .poke-types {

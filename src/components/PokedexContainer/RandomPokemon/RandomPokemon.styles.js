@@ -18,11 +18,6 @@ export const StyledPokemonContainer = styled.div`
     color: grey;
   }
 
-  .poke-photo {
-    // width: 70%;
-    // height: 70%;
-  }
-
   .poke-types {
     width: 100%;
     display: flex;
