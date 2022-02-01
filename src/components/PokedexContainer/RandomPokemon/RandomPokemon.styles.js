@@ -5,7 +5,7 @@ export const StyledPokemonContainer = styled.div`
   margin-bottom: 2.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   border-radius: 25px;
   height: 80%;

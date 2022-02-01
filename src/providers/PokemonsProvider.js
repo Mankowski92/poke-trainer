@@ -9,12 +9,14 @@ export const PokemonsContext = React.createContext({
   handleIncrementOffset: () => {},
   handleDecrementOffset: () => {},
   handleSubmitCustomOffset: () => {},
+  handleImageLoaded: () => {},
 
   currentPokedexOption: '',
   pokemon: {},
   pokemonList: [],
   loadingRequired: false,
   loading: true,
+  imageLoaded: false,
   offset: 0,
 });
 
@@ -27,6 +29,7 @@ const PokemonsProvider = ({ children }) => {
   const [loadingRequired, setLoadingRequired] = useState(false);
   const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -40,6 +43,13 @@ const PokemonsProvider = ({ children }) => {
   useEffect(() => {
     handleGetPokemonList();
   }, [offset]);
+
+  useEffect(() => {}, [imageLoaded]);
+
+  const handleImageLoaded = () => {
+    setImageLoaded(true);
+    console.log('image loaded!');
+  };
 
   const handleIncrementOffset = () => {
     if (offset >= 1111) {
@@ -85,6 +95,8 @@ const PokemonsProvider = ({ children }) => {
 
   // handle responsible for getting  random pokemon in pokedex
   const handleGetRandomPokemon = () => {
+    setImageLoaded(false);
+
     setCurrentPokedexOption('randomPokemon');
 
     function getRandomArbitrary(min, max) {
@@ -138,11 +150,13 @@ const PokemonsProvider = ({ children }) => {
         handleIncrementOffset,
         handleDecrementOffset,
         handleSubmitCustomOffset,
+        handleImageLoaded,
         currentPokedexOption,
         pokemon,
         pokemonList,
         loadingRequired,
         loading,
+        imageLoaded,
         offset,
       }}
     >
