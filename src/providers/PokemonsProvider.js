@@ -29,7 +29,6 @@ const PokemonsProvider = ({ children }) => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const [loadingRequired, setLoadingRequired] = useState(false);
   const [offset, setOffset] = useState(0);
-  const [customOffset, setCustomOffset] = useState(0);
   const [loading, setLoading] = useState(true);
 
   function capitalizeFirstLetter(string) {
@@ -64,7 +63,7 @@ const PokemonsProvider = ({ children }) => {
   const handleSubmitCustomOffset = (event) => {
     event.preventDefault();
 
-    setOffset(event.target.value);
+    setOffset(parseInt(event.target.value));
   };
 
   // handle responsible for PokemonList

@@ -35,7 +35,7 @@ const PokemonList = () => {
               <button onClick={() => handleDecrementOffset()}>Previous</button>
               <button onClick={() => handleIncrementOffset()}>Next</button>
               <form className="custom-offset-form">
-                <span> Default offset: </span>
+                <span> Offset (editable): </span>
                 <input type="number" value={ctx.offset} onChange={handleSubmitCustomOffset} />
               </form>
             </div>

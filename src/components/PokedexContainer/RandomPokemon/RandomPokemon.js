@@ -20,7 +20,12 @@ const RandomPokemon = () => {
               <div className="loading">loading...</div>
             ) : null}
           </div>
-          <img className="poke-photo" onLoad={() => handleSetImgLoaded()} src={ctx.pokemon ? ctx.pokemon.artwork : ''} alt="" />
+          <img
+            className={`poke-photo ${!ctx.imgLoaded ? 'poke-photo-loading-active' : ''}`}
+            onLoad={() => handleSetImgLoaded()}
+            src={ctx.pokemon ? ctx.pokemon.artwork : ''}
+            alt=""
+          />
           <div className={ctx.imgLoaded ? 'poke-types' : ''}>
             {ctx.pokemon && ctx.imgLoaded
               ? ctx.pokemon.types.map((element, index) => {

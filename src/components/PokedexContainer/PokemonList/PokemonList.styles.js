@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StyledPokemonListContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
   width: 92%;
-  height: calc(100vh - 260px);
+  height: calc(100% - 110px);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -21,7 +21,6 @@ export const StyledPokemonListContainer = styled.div`
     border: 2px solid black;
     width: 30%;
     height: 45%;
-    margin-bottom: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -40,23 +39,23 @@ export const StyledPokemonListContainer = styled.div`
     }
   }
   .buttons {
-    width: 80%;
-    margin: 10px auto 0 auto;
+    margin: 0 auto;
     display: flex;
     flex-direction: row;
     justify-content: center;
     button {
-      width: 25%;
-      margin: 0 1rem;
+      margin: 0 0.5rem;
     }
     .custom-offset-form {
-      width: 50%;
       display: flex;
       span {
-        margin-right: 8px;
+        margin: 0 3px 0 12px;
       }
       .offset-submit {
         margin-left: 8px;
+      }
+      input {
+        width: 50px;
       }
     }
   }
