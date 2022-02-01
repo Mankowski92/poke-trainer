@@ -10,6 +10,14 @@ export const StyledPokemonContainer = styled.div`
   border-radius: 25px;
   height: 80%;
 
+  .loading {
+    color: ${({ theme }) => theme.colors.blue};
+    padding: 15px;
+    text-align: center;
+    width: 40vw;
+    font-size: 4rem;
+  }
+
   .poke-photo {
     height: 72%;
   }
@@ -111,13 +119,5 @@ export const StyledPokemonContainer = styled.div`
       color: ${({ theme }) => theme.colors.types.dark};
       background-color: ${({ theme }) => theme.colors.types.dark}33;
     }
-  }
-
-  .loading {
-    color: ${({ theme }) => theme.colors.blue};
-    padding: 15px;
-    text-align: center;
-    width: 40vw;
-    font-size: 4rem;
   }
 `;

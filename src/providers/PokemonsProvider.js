@@ -5,7 +5,6 @@ export const PokemonsContext = React.createContext({
   handleFindPokemon: () => {},
   handleGetRandomPokemon: () => {},
   capitalizeFirstLetter: () => {},
-  handleSetImgLoaded: () => {},
   resetPokedexOptions: () => {},
   handleIncrementOffset: () => {},
   handleDecrementOffset: () => {},
@@ -14,7 +13,6 @@ export const PokemonsContext = React.createContext({
   currentPokedexOption: '',
   pokemon: {},
   pokemonList: [],
-  imgLoaded: false,
   loadingRequired: false,
   loading: true,
   offset: 0,
@@ -26,7 +24,6 @@ const PokemonsProvider = ({ children }) => {
   const [currentPokedexOption, setCurrentPokedexOption] = useState(null);
   const [pokemon, setPokemons] = useState(null);
   const [pokemonList, setPokemonList] = useState(null);
-  const [imgLoaded, setImgLoaded] = useState(false);
   const [loadingRequired, setLoadingRequired] = useState(false);
   const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -70,6 +67,8 @@ const PokemonsProvider = ({ children }) => {
   const handleGetPokemonList = () => {
     setCurrentPokedexOption('pokemonList');
     const fetchPokemons = async () => {
+      setLoadingRequired(true);
+      setPokemonList(null);
       let res = await fetch(`${API}?offset=${offset}&limit=6/`);
       let response = await res.json();
 
@@ -97,7 +96,6 @@ const PokemonsProvider = ({ children }) => {
     const fetchData = async () => {
       setLoadingRequired(true);
       setPokemons(null);
-      setImgLoaded(false);
       let res = await fetch(`${API}/${randomPokemon}/`);
       let response = await res.json();
 
@@ -125,10 +123,6 @@ const PokemonsProvider = ({ children }) => {
     console.log('POKEMON FORM');
   };
 
-  const handleSetImgLoaded = () => {
-    setImgLoaded(true);
-  };
-
   const resetPokedexOptions = () => {
     setCurrentPokedexOption(null);
   };
@@ -140,7 +134,6 @@ const PokemonsProvider = ({ children }) => {
         handleFindPokemon,
         handleGetPokemonList,
         capitalizeFirstLetter,
-        handleSetImgLoaded,
         resetPokedexOptions,
         handleIncrementOffset,
         handleDecrementOffset,
@@ -148,7 +141,6 @@ const PokemonsProvider = ({ children }) => {
         currentPokedexOption,
         pokemon,
         pokemonList,
-        imgLoaded,
         loadingRequired,
         loading,
         offset,
