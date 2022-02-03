@@ -44,6 +44,7 @@ const PokemonsProvider = ({ children }) => {
     handleGetPokemonList();
   }, [offset]);
 
+  //check if to remove!
   useEffect(() => {}, [imageLoaded]);
 
   const handleImageLoaded = () => {
