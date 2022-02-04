@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { PokemonsContext } from '../../../providers/PokemonsProvider';
+import { PokemonsContext } from '../../../../providers/PokemonsProvider';
 
 const UserList = () => {
   const { users, userLength, editMode, cancelEdit, updateUser, deleteUser } = useContext(PokemonsContext);

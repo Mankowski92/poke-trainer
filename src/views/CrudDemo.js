@@ -1,12 +1,12 @@
 import React from 'react';
-import Form from '../components/PokeTrainerBackedRelated/CrudDemo/Form';
-import UserList from '../components/PokeTrainerBackedRelated/CrudDemo/UserList';
-import { Actions } from '../Actions';
+import Form from '../components/PokeTrainerBackedRelated/CrudDemo/Form/Form';
+import UserList from '../components/PokeTrainerBackedRelated/CrudDemo/UserList/UserList';
+import { CrudActions } from '../providers/CrudActions';
 import { Provider } from '../providers/PokemonsProvider';
 import Nav from '../components/Nav/Nav';
 
 const CrudDemo = () => {
-  const data = Actions();
+  const data = CrudActions();
   return (
     <>
       <Nav />

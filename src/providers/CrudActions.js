@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 
-export const Actions = () => {
+export const CrudActions = () => {
   let [users, setUsers] = useState([]);
 
   //userLength is for showing the Data Loading message.
   let [userLength, setUserLength] = useState(null);
 
   useEffect(() => {
-    fetch('http://192.168.64.2/poke-trainer-backend/all-users.php')
+    fetch('http://192.168.64.2/poke-trainer-backend/crud-demo/all-users.php')
       .then((res) => {
         return res.json();
       })
@@ -26,7 +26,7 @@ export const Actions = () => {
 
   // Inserting a new user into the database.
   const insertUser = (newUser) => {
-    fetch('http://192.168.64.2/poke-trainer-backend/add-user.php', {
+    fetch('http://192.168.64.2/poke-trainer-backend/crud-demo/add-user.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ export const Actions = () => {
 
   // Updating a user.
   const updateUser = (userData) => {
-    fetch('http://192.168.64.2/poke-trainer-backend/update-user.php', {
+    fetch('http://192.168.64.2/poke-trainer-backend/crud-demo/update-user.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -119,7 +119,7 @@ export const Actions = () => {
     let userDeleted = users.filter((user) => {
       return user.id !== theID;
     });
-    fetch('http://192.168.64.2/poke-trainer-backend/delete-user.php', {
+    fetch('http://192.168.64.2/poke-trainer-backend/crud-demo/delete-user.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

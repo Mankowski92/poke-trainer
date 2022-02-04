@@ -1,9 +1,15 @@
 import React from 'react';
+import { LoginContainer } from './Login.styles';
 
 const Login = () => {
   return (
     <>
-      <h1>Login part</h1>
+      <LoginContainer>
+        <div className="login-container-wrapper">
+          <h1>Login component (under construction)</h1>
+          <span>component beneath is registration one</span>
+        </div>
+      </LoginContainer>
     </>
   );
 };
