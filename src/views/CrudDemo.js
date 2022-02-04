@@ -12,7 +12,7 @@ const CrudDemo = () => {
       <Nav />
       <Provider value={data}>
         <div className="App">
-          <h1>React JS + PHP CRUD Application</h1>
+          <h1>Simple React + PHP CRUD demo</h1>
           <div className="wrapper">
             <section className="left-side">
               <Form />
