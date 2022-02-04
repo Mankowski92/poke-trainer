@@ -1,14 +1,17 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'assets/styles/GlobalStyle';
 import { theme } from 'assets/styles/theme';
 import { Wrapper } from './Root.styles';
-import { Switch, useLocation, Route } from 'react-router-dom';
+import { Route, Switch, useLocation } from 'react-router-dom';
 import Dashboard from 'views/Dashboard';
 import Pokedex from 'views/Pokedex';
 import Hunting from 'views/Hunting';
 import Login from 'views/Login';
+import CrudDemo from 'views/CrudDemo';
+
 import { PokemonsContext } from '../providers/PokemonsProvider';
+
 const Root = () => {
   const location = useLocation();
 
@@ -37,6 +40,9 @@ const Root = () => {
           </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/crud-demo">
+            <CrudDemo />
           </Route>
           <Route strict path="/">
             <Dashboard />

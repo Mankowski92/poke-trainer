@@ -1,10 +1,19 @@
 import React from 'react';
+import { Actions } from '../Actions';
+import { Provider } from '../providers/PokemonsProvider';
+
 import Nav from '../components/Nav/Nav';
+
 const Login = () => {
+  const data = Actions();
   return (
     <>
       <Nav />
-      <h1>LOGIN VIEW</h1>
+      <Provider value={data}>
+        <div className="App">
+          <h1>Login view</h1>
+        </div>
+      </Provider>
     </>
   );
 };

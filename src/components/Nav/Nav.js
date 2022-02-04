@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledNavList, StyledLink } from './Nav.styles';
+import { StyledLink, StyledNavList } from './Nav.styles';
 
 const Nav = () => {
   return (
@@ -11,6 +11,7 @@ const Nav = () => {
         <StyledLink to="/pokedex">Pokedex</StyledLink>
         <StyledLink to="/hunting">Go hunt</StyledLink>
         <StyledLink to="/login">Login</StyledLink>
+        <StyledLink to="/crud-demo">Crud demo</StyledLink>
       </StyledNavList>
     </>
   );
