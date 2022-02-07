@@ -1,41 +1,25 @@
-import { useState } from 'react';
-
 export const LoginRegistrationActions = () => {
-  let [users, setUsers] = useState([]);
-  let [userLength, setUserLength] = useState(null);
-
   const insertUser = (newUser) => {
-    fetch('http://192.168.64.2/poke-trainer-backend/login-registration/register-user.php', {
+    fetch('http://192.168.64.2/poke-trainer-backend/login-registration/authentication.php', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json; charset=UTF-8',
       },
       body: JSON.stringify(newUser),
     })
-      .then((res) => {
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((data) => {
-        if (data.id) {
-          setUsers([
-            {
-              id: data.id,
-              ...newUser,
-            },
-            ...users,
-          ]);
-          setUserLength(true);
+        if (data) {
+          console.log('data: ', data);
         } else {
-          alert(data.msg);
+          alert('No data');
         }
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log('error: ', error);
       });
   };
   return {
-    users,
     insertUser,
-    userLength,
   };
 };

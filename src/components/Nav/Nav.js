@@ -11,7 +11,6 @@ const Nav = () => {
         <StyledLink to="/pokedex">Pokedex</StyledLink>
         <StyledLink to="/hunting">Go hunt</StyledLink>
         <StyledLink to="/login">Login</StyledLink>
-        <StyledLink to="/crud-demo">Crud demo</StyledLink>
       </StyledNavList>
     </>
   );

@@ -8,7 +8,6 @@ import Dashboard from 'views/Dashboard';
 import Pokedex from 'views/Pokedex';
 import Hunting from 'views/Hunting';
 import Login from 'views/Login';
-import CrudDemo from 'views/CrudDemo';
 
 import { PokemonsContext } from '../providers/PokemonsProvider';
 
@@ -40,9 +39,6 @@ const Root = () => {
           </Route>
           <Route path="/login">
             <Login />
-          </Route>
-          <Route path="/crud-demo">
-            <CrudDemo />
           </Route>
           <Route strict path="/">
             <Dashboard />

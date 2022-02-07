@@ -25,10 +25,10 @@ const Registration = () => {
         <form className="registration-form" onSubmit={submitUser}>
           <span className="form-title">Sing up</span>
           <label htmlFor="name">Username</label>
-          <input type="text" id="name" onChange={(e) => addNewUser(e, 'username')} placeholder="Enter username" autoComplete="off" required />
+          <input type="text" id="name" onChange={(e) => addNewUser(e, 'username')} placeholder="Enter username" autoComplete="off" />
           <label htmlFor="password">Password</label>
-          <input type="password" id="password" onChange={(e) => addNewUser(e, 'password')} placeholder="Enter password" autoComplete="off" required />
-          <label htmlFor="password">Confirm password</label>
+          <input type="password" id="password" onChange={(e) => addNewUser(e, 'password')} placeholder="Enter password" autoComplete="off" />
+          {/*<label htmlFor="password">Confirm password</label>*/}
           {/*CONFIRM PASSWORD IS NOT IN DB PHP FILES OR ELSEWHERE THAN THIS FILE*/}
           {/*<input type="password" id="confirm-password" onChange={(e) => addNewUser(e, 'confirm-password')}*/}
           {/*       placeholder="Confirm password" autoComplete="off" required/>*/}

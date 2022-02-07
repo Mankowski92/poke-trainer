@@ -1,5 +1,5 @@
 import React from 'react';
-import Registration from './Registration/Registaration';
+import Registration from './Registration/Registration';
 import Login from './Login/Login';
 import { StyledLoginRegistrationContainer } from './LoginRegistrationContainer.styles';
 import Nav from '../../Nav/Nav';

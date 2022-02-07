@@ -1,10 +1,10 @@
 import React from 'react';
-import { CrudActions } from '../providers/CrudActions';
+import { LoginRegistrationActions } from '../providers/LoginRegistrationActions';
 import { Provider } from '../providers/PokemonsProvider';
 import LoginRegistrationContainer from '../components/PokeTrainerBackedRelated/LoginRegistrationContainer/LoginRegistrationContainer';
 
 const Login = () => {
-  const data = CrudActions();
+  const data = LoginRegistrationActions();
   return (
     <>
       <Provider value={data}>
