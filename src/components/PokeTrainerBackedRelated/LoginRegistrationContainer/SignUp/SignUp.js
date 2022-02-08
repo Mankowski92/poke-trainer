@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { PokemonsContext } from '../../../../providers/PokemonsProvider';
-import { RegistrationContainer } from './Registration.styles';
+import { LoginContainer } from './SignUp.styles';
 
-const Registration = () => {
-  const { insertUser } = useContext(PokemonsContext);
+const SignUp = () => {
+  const { registerUser } = useContext(PokemonsContext);
   const [newUser, setNewUser] = useState({});
 
   const addNewUser = (e, field) => {
@@ -15,28 +15,24 @@ const Registration = () => {
 
   const submitUser = (e) => {
     e.preventDefault();
-    insertUser(newUser);
+    registerUser(newUser);
     e.target.reset();
   };
 
   return (
     <>
-      <RegistrationContainer>
-        <form className="registration-form" onSubmit={submitUser}>
-          <span className="form-title">Sing up</span>
+      <LoginContainer>
+        <form className="sign-in-form" onSubmit={submitUser}>
+          <span className="sign-in-title">Sing up</span>
           <label htmlFor="name">Username</label>
           <input type="text" id="name" onChange={(e) => addNewUser(e, 'username')} placeholder="Enter username" autoComplete="off" />
           <label htmlFor="password">Password</label>
           <input type="password" id="password" onChange={(e) => addNewUser(e, 'password')} placeholder="Enter password" autoComplete="off" />
-          {/*<label htmlFor="password">Confirm password</label>*/}
-          {/*CONFIRM PASSWORD IS NOT IN DB PHP FILES OR ELSEWHERE THAN THIS FILE*/}
-          {/*<input type="password" id="confirm-password" onChange={(e) => addNewUser(e, 'confirm-password')}*/}
-          {/*       placeholder="Confirm password" autoComplete="off" required/>*/}
-          <input type="submit" value="Register" />
+          <input className="sign-in-submit" type="submit" value="Submit" />
         </form>
-      </RegistrationContainer>
+      </LoginContainer>
     </>
   );
 };
 
-export default Registration;
+export default SignUp;

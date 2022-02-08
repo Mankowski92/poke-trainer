@@ -1,6 +1,5 @@
 import React from 'react';
-import Registration from './Registration/Registration';
-import Login from './Login/Login';
+import SignIn from './SignIn/SignIn';
 import { StyledLoginRegistrationContainer } from './LoginRegistrationContainer.styles';
 import Nav from '../../Nav/Nav';
 
@@ -9,8 +8,7 @@ const LoginRegistrationContainer = () => {
     <>
       <Nav />
       <StyledLoginRegistrationContainer>
-        <Login />
-        <Registration />
+        <SignIn />
       </StyledLoginRegistrationContainer>
     </>
   );

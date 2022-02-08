@@ -8,16 +8,15 @@ import Dashboard from 'views/Dashboard';
 import Pokedex from 'views/Pokedex';
 import Hunting from 'views/Hunting';
 import Login from 'views/Login';
-
-import { PokemonsContext } from '../providers/PokemonsProvider';
+import SignUp from '../components/PokeTrainerBackedRelated/LoginRegistrationContainer/SignUp/SignUp';
+import { PokemonsContext, Provider } from '../providers/PokemonsProvider';
+import { LoginRegistrationActions } from '../providers/LoginRegistrationActions';
 
 const Root = () => {
   const location = useLocation();
-
   const ctx = useContext(PokemonsContext);
-
   const { resetPokedexOptions } = useContext(PokemonsContext);
-
+  const data = LoginRegistrationActions();
   // Use effect made for temp logging actual path to further use
   useEffect(() => {
     console.log('Location changed for', location.pathname);
@@ -37,9 +36,14 @@ const Root = () => {
           <Route path="/hunting">
             <Hunting />
           </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
+          <Provider value={data}>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/registration">
+              <SignUp />
+            </Route>
+          </Provider>
           <Route strict path="/">
             <Dashboard />
           </Route>
