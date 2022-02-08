@@ -15,7 +15,6 @@ export const PokemonsContext = React.createContext({
   pokemon: {},
   pokemonList: [],
   loadingRequired: false,
-  loading: true,
   imageLoaded: false,
   offset: 0,
 });
@@ -28,24 +27,15 @@ const PokemonsProvider = ({ children }) => {
   const [pokemonList, setPokemonList] = useState(null);
   const [loadingRequired, setLoadingRequired] = useState(false);
   const [offset, setOffset] = useState(0);
-  const [loading, setLoading] = useState(true);
   const [imageLoaded, setImageLoaded] = useState(false);
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  //component did mount
-  // useEffect(() => {
-  //   setXYZ(XYZ => (XYZ + 1));
-  // }, []);
-
   useEffect(() => {
     handleGetPokemonList();
-  }, [offset]);
-
-  //check if to remove!
-  useEffect(() => {}, [imageLoaded]);
+  }, [offset]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleImageLoaded = () => {
     setImageLoaded(true);
@@ -156,7 +146,6 @@ const PokemonsProvider = ({ children }) => {
         pokemon,
         pokemonList,
         loadingRequired,
-        loading,
         imageLoaded,
         offset,
       }}

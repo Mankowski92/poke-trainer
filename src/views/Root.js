@@ -25,7 +25,7 @@ const Root = () => {
       resetPokedexOptions();
       console.log('Reset of current pokedex handle fired (list/random/find)');
     }
-  }, [location]);
+  }, [location]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
