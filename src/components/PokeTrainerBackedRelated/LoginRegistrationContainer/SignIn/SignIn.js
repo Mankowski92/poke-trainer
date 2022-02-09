@@ -3,6 +3,8 @@ import { PokemonsContext } from '../../../../providers/PokemonsProvider';
 import { SignInContainer, StyledLoginLink } from './SignIn.styles';
 
 const SignIn = () => {
+  const ctx = useContext(PokemonsContext);
+
   const { validateUser } = useContext(PokemonsContext);
   const [user, setUser] = useState({});
 
@@ -17,6 +19,7 @@ const SignIn = () => {
     e.preventDefault();
     validateUser(user);
     e.target.reset();
+    setUser({});
   };
 
   return (
@@ -38,6 +41,11 @@ const SignIn = () => {
           <StyledLoginLink to="/registration">Sign up</StyledLoginLink>
         </div>
       </SignInContainer>
+      {ctx.responseData ? (
+        <>
+          <div className="xyz"> {ctx.responseData}</div>
+        </>
+      ) : null}
     </>
   );
 };

@@ -8,7 +8,7 @@ import Dashboard from 'views/Dashboard';
 import Pokedex from 'views/Pokedex';
 import Hunting from 'views/Hunting';
 import Login from 'views/Login';
-import SignUp from '../components/PokeTrainerBackedRelated/LoginRegistrationContainer/SignUp/SignUp';
+import Registration from 'views/Registration';
 import { PokemonsContext, Provider } from '../providers/PokemonsProvider';
 import { LoginRegistrationActions } from '../providers/LoginRegistrationActions';
 
@@ -36,14 +36,17 @@ const Root = () => {
           <Route path="/hunting">
             <Hunting />
           </Route>
-          <Provider value={data}>
-            <Route path="/login">
+          {/*need to fix provider duplicate. Probably move this and merge provider into one*/}
+          <Route path="/login">
+            <Provider value={data}>
               <Login />
-            </Route>
-            <Route path="/registration">
-              <SignUp />
-            </Route>
-          </Provider>
+            </Provider>
+          </Route>
+          <Route path="/registration">
+            <Provider value={data}>
+              <Registration />
+            </Provider>
+          </Route>
           <Route strict path="/">
             <Dashboard />
           </Route>

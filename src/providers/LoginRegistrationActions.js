@@ -1,4 +1,8 @@
+import React, { useState } from 'react';
+
 export const LoginRegistrationActions = () => {
+  const [responseData, setResponseData] = useState(null);
+
   const validateUser = (user) => {
     fetch('http://192.168.64.2/poke-trainer-backend/login-registration/authentication.php', {
       method: 'POST',
@@ -11,6 +15,7 @@ export const LoginRegistrationActions = () => {
       .then((data) => {
         if (data) {
           console.log('data: ', data);
+          setResponseData(data.msg);
         } else {
           alert('No data');
         }
@@ -18,10 +23,6 @@ export const LoginRegistrationActions = () => {
       .catch((error) => {
         console.log('error: ', error);
       });
-  };
-
-  const test = () => {
-    console.log('tutututuu');
   };
 
   const registerUser = (newUser) => {
@@ -47,6 +48,6 @@ export const LoginRegistrationActions = () => {
   return {
     validateUser,
     registerUser,
-    test,
+    responseData,
   };
 };

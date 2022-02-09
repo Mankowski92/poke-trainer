@@ -1,15 +1,15 @@
 import React from 'react';
 import DefaultContainer from '../components/Containers/DefaultContainer/DefaultContainer';
-import SignIn from '../components/PokeTrainerBackedRelated/LoginRegistrationContainer/SignIn/SignIn';
+import SignUp from '../components/PokeTrainerBackedRelated/LoginRegistrationContainer/SignUp/SignUp';
 
-const Login = () => {
+const Registration = () => {
   return (
     <>
       <DefaultContainer>
-        <SignIn />
+        <SignUp />
       </DefaultContainer>
     </>
   );
 };
 
-export default Login;
+export default Registration;

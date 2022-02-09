@@ -154,5 +154,5 @@ const PokemonsProvider = ({ children }) => {
     </PokemonsContext.Provider>
   );
 };
-export const Provider = PokemonsContext.Provider;
 export default PokemonsProvider;
+export const Provider = PokemonsContext.Provider;
