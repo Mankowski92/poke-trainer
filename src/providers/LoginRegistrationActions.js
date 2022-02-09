@@ -15,7 +15,7 @@ export const LoginRegistrationActions = () => {
       .then((data) => {
         if (data) {
           console.log('data: ', data);
-          setResponseData(data.msg);
+          setResponseData(data);
         } else {
           alert('No data');
         }
@@ -37,6 +37,7 @@ export const LoginRegistrationActions = () => {
       .then((data) => {
         if (data) {
           console.log('data: ', data);
+          setResponseData(data);
         } else {
           alert('No data');
         }

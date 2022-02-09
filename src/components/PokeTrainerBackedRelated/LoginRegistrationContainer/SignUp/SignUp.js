@@ -3,6 +3,8 @@ import { PokemonsContext } from '../../../../providers/PokemonsProvider';
 import { LoginContainer } from './SignUp.styles';
 
 const SignUp = () => {
+  const ctx = useContext(PokemonsContext);
+
   const { registerUser } = useContext(PokemonsContext);
   const [newUser, setNewUser] = useState({});
 
@@ -32,6 +34,11 @@ const SignUp = () => {
           <input className="sign-up-submit" type="submit" value="Submit" />
         </form>
       </LoginContainer>
+      {ctx.responseData ? (
+        <>
+          <div className="xyz"> {ctx.responseData}</div>
+        </>
+      ) : null}
     </>
   );
 };
