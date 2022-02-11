@@ -16,7 +16,7 @@ export const PokemonsContext = React.createContext({
   pokemonList: [],
   loadingRequired: false,
   imageLoaded: false,
-  offset: 0,
+  offset: null,
 });
 
 const PokemonsProvider = ({ children }) => {
@@ -34,7 +34,9 @@ const PokemonsProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    handleGetPokemonList();
+    if (currentPokedexOption != null) {
+      handleGetPokemonList();
+    }
   }, [offset]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleImageLoaded = () => {

@@ -65,6 +65,7 @@ export const StyledPokemonListContainer = styled.div`
     padding: 15px;
     font-size: ${({ theme }) => theme.fontSize.xxl};
     margin: 0 auto;
+    font-size: 4rem;
   }
 
   //   .poke-types {
@@ -152,10 +153,5 @@ export const StyledPokemonListContainer = styled.div`
   //       color: ${({ theme }) => theme.colors.types.dark};
   //       background-color: ${({ theme }) => theme.colors.types.dark}33;
   //     }
-  //   }
-
-  //   .loading {
-  //     color: ${({ theme }) => theme.colors.blue};
-  //     padding: 15px;
   //   }
 `;
