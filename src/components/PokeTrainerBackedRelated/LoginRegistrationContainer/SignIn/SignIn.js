@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { PokemonsContext } from '../../../../providers/PokemonsProvider';
-import { SignInContainer, StyledLoginLink } from './SignIn.styles';
+import { SignInContainer, StyledLoginLink, SuccessfulLoginContainer } from './SignIn.styles';
 import { useHistory } from 'react-router-dom';
 
 const SignIn = () => {
@@ -11,7 +11,6 @@ const SignIn = () => {
   const [loginSuccess, setLoginSuccess] = useState(false);
 
   const history = useHistory();
-  // on login success: history.push('/home')
 
   const createUserDraft = (e, field) => {
     setUser({
@@ -25,18 +24,30 @@ const SignIn = () => {
     validateUser(user);
     setUser({});
     e.target.reset();
+  };
 
-    // 1. Display information about success login
-    // 2. Inform about redirection
-    // 3. Then history.push
-    // history.push('/home')
+  // 1. Display information about success login
+  // 2. Inform about redirection
+  // 3. Then history.push
+  // history.push('/home')
+
+  useEffect(() => {
+    if (loginSuccess) {
+      loginSuccessAction();
+    }
+  }, [loginSuccess]);
+
+  const loginSuccessAction = () => {
+    // setTimeout(() => {
+    //     history.push('/home')
+    // }, 4000)
   };
 
   useEffect(() => {
-    handleTest();
+    validateLoginSuccess();
   }, [ctx.responseData]);
 
-  const handleTest = () => {
+  const validateLoginSuccess = () => {
     if (ctx.responseData) {
       ctx.responseData.success === 1 ? setLoginSuccess(true) : setLoginSuccess(false);
     }
@@ -44,37 +55,37 @@ const SignIn = () => {
 
   return (
     <>
-      <SignInContainer>
-        <form className="sign-in-form" onSubmit={submitUser}>
-          <span className="sign-in-title">Sing in</span>
-          <label htmlFor="name">Username</label>
-          <input type="text" id="name" onChange={(e) => createUserDraft(e, 'username')} placeholder="Enter username" autoComplete="off" />
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" onChange={(e) => createUserDraft(e, 'password')} placeholder="Enter password" autoComplete="off" />
-          <input className="sign-in-submit" type="submit" value="Submit" />
-        </form>
-        <div className="create-account">
-          <div className="create-account-infobox">
-            <span>You don't have an account?</span>
-            <span>Create one using sign up button!</span>
+      {!loginSuccess ? (
+        <SignInContainer>
+          <form className="sign-in-form" onSubmit={submitUser}>
+            <span className="sign-in-title">Sing in</span>
+            <label htmlFor="name">Username</label>
+            <input type="text" id="name" onChange={(e) => createUserDraft(e, 'username')} placeholder="Enter username" autoComplete="off" />
+            <label htmlFor="password">Password</label>
+            <input type="password" id="password" onChange={(e) => createUserDraft(e, 'password')} placeholder="Enter password" autoComplete="off" />
+            <input className="sign-in-submit" type="submit" value="Submit" />
+          </form>
+          {ctx.responseData && !loginSuccess ? (
+            <>
+              <div className="login-fail-warning">Login unsuccessful {ctx.responseData.msg}</div>
+            </>
+          ) : null}
+          <div className="create-account">
+            <div className="create-account-infobox">
+              <span>You don't have an account?</span>
+              <span>Create one using sign up button!</span>
+            </div>
+            <StyledLoginLink to="/registration">Sign up</StyledLoginLink>
           </div>
-          <StyledLoginLink to="/registration">Sign up</StyledLoginLink>
-        </div>
-      </SignInContainer>
-      {ctx.responseData && !loginSuccess ? (
-        <>
-          <div className="xyz">Login unsuccessful {ctx.responseData.msg}</div>
-        </>
-      ) : null}
-
-      {loginSuccess ? (
-        <>
-          <div>Login successful! {ctx.responseData.msg}</div>
-          {/*{setTimeout(() => {*/}
-          {/*    history.push('/home')*/}
-          {/*}, 4000)}*/}
-        </>
-      ) : null}
+        </SignInContainer>
+      ) : (
+        <SuccessfulLoginContainer>
+          <div className="main-wraper">
+            <span>Login successful!</span>
+            <span>{ctx.responseData.msg}</span>
+          </div>
+        </SuccessfulLoginContainer>
+      )}
     </>
   );
 };

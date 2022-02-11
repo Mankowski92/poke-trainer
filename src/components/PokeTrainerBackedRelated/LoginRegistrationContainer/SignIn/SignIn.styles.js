@@ -26,6 +26,12 @@ export const SignInContainer = styled.div`
       line-height: 26px;
     }
   }
+  .login-fail-warning {
+    color: red;
+    margin-top: 0.5rem;
+    font-weight: 600;
+    ${({ theme }) => theme.colors.red};
+  }
   .create-account {
     display: flex;
     justify-content: space-between;
@@ -49,4 +55,18 @@ export const StyledLoginLink = styled(NavLink)`
   line-height: 20px;
   border-radius: 5px;
   border: 3px solid #e64a0f;
+`;
+
+export const SuccessfulLoginContainer = styled.div`
+  background-color: ${({ theme }) => theme.colors.white};
+  border-radius: 15px;
+  padding: 30px;
+  font-size: 2rem;
+  .main-wraper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
 `;

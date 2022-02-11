@@ -26,3 +26,17 @@ export const LoginContainer = styled.div`
     }
   }
 `;
+
+export const SuccessfulUserCreateContainer = styled.div`
+  background-color: ${({ theme }) => theme.colors.white};
+  border-radius: 15px;
+  padding: 30px;
+  font-size: 2rem;
+  .main-wraper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+`;
