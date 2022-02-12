@@ -22,6 +22,8 @@ const SignUp = () => {
     setNewUser({});
   };
 
+  // need to implement action on success sign up
+
   return (
     <>
       {ctx.responseData && ctx.responseData.success === 1 ? (

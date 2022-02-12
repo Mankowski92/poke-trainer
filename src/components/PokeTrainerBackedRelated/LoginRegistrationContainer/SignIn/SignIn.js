@@ -26,10 +26,7 @@ const SignIn = () => {
     e.target.reset();
   };
 
-  // 1. Display information about success login
-  // 2. Inform about redirection
-  // 3. Then history.push
-  // history.push('/home')
+  // need to reset/change SignIn component after successful login
 
   useEffect(() => {
     if (loginSuccess) {
@@ -38,9 +35,9 @@ const SignIn = () => {
   }, [loginSuccess]);
 
   const loginSuccessAction = () => {
-    // setTimeout(() => {
-    //     history.push('/home')
-    // }, 4000)
+    setTimeout(() => {
+      history.push('/home');
+    }, 4000);
   };
 
   useEffect(() => {
@@ -83,6 +80,7 @@ const SignIn = () => {
           <div className="main-wraper">
             <span>Login successful!</span>
             <span>{ctx.responseData.msg}</span>
+            <span>Redirecting to home page...</span>
           </div>
         </SuccessfulLoginContainer>
       )}
