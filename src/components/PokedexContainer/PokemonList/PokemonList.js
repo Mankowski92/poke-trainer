@@ -11,7 +11,6 @@ const PokemonList = () => {
 
   const [offset, setOffset] = useState('');
   const submitOffset = (event) => {
-    console.log('offset: ', offset);
     handleSubmitCustomOffset(parseInt(offset));
     event.preventDefault();
   };
@@ -30,12 +29,14 @@ const PokemonList = () => {
                 </div>
               ))}
               <div className="buttons">
-                <button onClick={() => handleDecrementOffset()}>Previous</button>
-                <button onClick={() => handleIncrementOffset()}>Next</button>
+                <div className="up-down-buttons">
+                  <button onClick={() => handleDecrementOffset()}>Previous</button>
+                  <button onClick={() => handleIncrementOffset()}>Next</button>
+                </div>
                 <form className="custom-offset-form" onSubmit={submitOffset}>
                   <span> Offset (editable): </span>
                   <input type="number" onChange={(e) => setOffset(e.target.value)} />
-                  <input type="submit" />
+                  <input type="submit" value="Set" className="offset-submit" />
                 </form>
               </div>
             </>

@@ -60,14 +60,8 @@ const PokemonsProvider = ({ children }) => {
     setOffset(offset - 6);
   };
 
-  // const handleSubmitCustomOffset = (event) => {
-  //   event.preventDefault();
-  //
-  //   setOffset(parseInt(event.target.value));
-  // };
-
-  const handleSubmitCustomOffset = (xyz) => {
-    setOffset(xyz);
+  const handleSubmitCustomOffset = (userCustomValue) => {
+    setOffset(userCustomValue - 1);
   };
 
   // handle responsible for PokemonList

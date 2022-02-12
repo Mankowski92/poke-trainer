@@ -9,6 +9,7 @@ export const StyledNavList = styled.ul`
   justify-content: flex-end;
   padding-right: 1.5rem;
 `;
+
 export const StyledLink = styled(NavLink).attrs({ activeClassName: 'active-link' })`
   text-decoration: none;
   background-color: ${({ theme }) => theme.colors.blue};

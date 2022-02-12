@@ -12,11 +12,13 @@ export const StyledPokemonListContainer = styled.div`
   border-radius: 25px;
   padding: 10px;
   margin-bottom: 20px;
+
   .render-info {
     width: 100%;
     text-align: center;
     font-size: 2rem;
   }
+
   .each-pokemon-container {
     border: 2px solid black;
     width: 30%;
@@ -26,34 +28,47 @@ export const StyledPokemonListContainer = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 25px;
+
     .poke-name {
       font-size: ${({ theme }) => theme.fontSize.xxl};
       line-height: 1;
     }
+
     .poke-id {
       color: grey;
     }
+
     .poke-photo {
       max-width: 100%;
       max-height: calc(100% - 65px);
     }
   }
+
   .buttons {
     margin: 0 auto;
     display: flex;
     flex-direction: row;
     justify-content: center;
+
     button {
       margin: 0 0.5rem;
     }
+
+    .up-down-buttons {
+      display: flex;
+    }
+
     .custom-offset-form {
       display: flex;
+      margin-left: 8px;
+
       span {
         margin: 0 3px 0 12px;
       }
+
       .offset-submit {
-        margin-left: 8px;
       }
+
       input {
         width: 50px;
       }
@@ -65,7 +80,6 @@ export const StyledPokemonListContainer = styled.div`
     padding: 15px;
     font-size: ${({ theme }) => theme.fontSize.xxl};
     margin: 0 auto;
-    font-size: 4rem;
   }
 
   //   .poke-types {
