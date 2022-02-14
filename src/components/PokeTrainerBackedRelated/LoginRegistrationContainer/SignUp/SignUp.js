@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { PokemonsContext } from '../../../../providers/PokemonsProvider';
+
 import { LoginContainer, SuccessfulUserCreateContainer } from './SignUp.styles';
 
 const SignUp = () => {

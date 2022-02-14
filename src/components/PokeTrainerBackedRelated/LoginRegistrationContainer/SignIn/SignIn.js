@@ -1,10 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { PokemonsContext } from '../../../../providers/PokemonsProvider';
+import { LocalContext } from '../../../../providers/LocalContext';
 import { SignInContainer, StyledLoginLink, SuccessfulLoginContainer } from './SignIn.styles';
 import { useHistory } from 'react-router-dom';
 
 const SignIn = () => {
   const ctx = useContext(PokemonsContext);
+
+  const asdf = useContext(LocalContext);
+
+  const { handleTest } = useContext(LocalContext);
 
   const { validateUser } = useContext(PokemonsContext);
   const { handleSetUserLogged } = useContext(PokemonsContext);
@@ -55,8 +60,8 @@ const SignIn = () => {
     <>
       {!loginSuccess ? (
         <SignInContainer>
-          <button onClick={() => handleSetUserLogged()}>Set Logged</button>
-          <div>{ctx.loadingRequired}</div>
+          <button onClick={() => handleTest()}>Set Logged</button>
+          <div>{asdf.testValue}</div>
           <form className="sign-in-form" onSubmit={submitUser}>
             <span className="sign-in-title">Sing in</span>
             <label htmlFor="name">Username</label>

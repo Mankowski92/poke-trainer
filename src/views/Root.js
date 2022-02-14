@@ -9,14 +9,12 @@ import Pokedex from 'views/Pokedex';
 import Hunting from 'views/Hunting';
 import Login from 'views/Login';
 import Registration from 'views/Registration';
-import { PokemonsContext, Provider } from '../providers/PokemonsProvider';
-import { LoginRegistrationActions } from '../providers/LoginRegistrationActions';
+import { PokemonsContext } from '../providers/PokemonsProvider';
 
 const Root = () => {
   const location = useLocation();
   const ctx = useContext(PokemonsContext);
   const { resetPokedexOptions } = useContext(PokemonsContext);
-  const data = LoginRegistrationActions();
   // Use effect made for temp logging actual path to further use
   useEffect(() => {
     console.log('Location changed for', location.pathname);
@@ -37,16 +35,11 @@ const Root = () => {
           <Route path="/hunting">
             <Hunting />
           </Route>
-          {/*need to fix provider duplicate. Probably move this and merge provider into one*/}
           <Route path="/login">
-            <Provider value={data}>
-              <Login />
-            </Provider>
+            <Login />
           </Route>
           <Route path="/registration">
-            <Provider value={data}>
-              <Registration />
-            </Provider>
+            <Registration />
           </Route>
           <Route strict path="/">
             <Dashboard />
