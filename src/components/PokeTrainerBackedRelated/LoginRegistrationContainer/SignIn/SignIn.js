@@ -7,6 +7,7 @@ const SignIn = () => {
   const ctx = useContext(PokemonsContext);
 
   const { validateUser } = useContext(PokemonsContext);
+  const { handleSetUserLogged } = useContext(PokemonsContext);
   const [user, setUser] = useState({});
   const [loginSuccess, setLoginSuccess] = useState(false);
 
@@ -54,6 +55,8 @@ const SignIn = () => {
     <>
       {!loginSuccess ? (
         <SignInContainer>
+          <button onClick={() => handleSetUserLogged()}>Set Logged</button>
+          <div>{ctx.loadingRequired}</div>
           <form className="sign-in-form" onSubmit={submitUser}>
             <span className="sign-in-title">Sing in</span>
             <label htmlFor="name">Username</label>

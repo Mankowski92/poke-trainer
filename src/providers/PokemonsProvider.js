@@ -10,6 +10,7 @@ export const PokemonsContext = React.createContext({
   handleDecrementOffset: () => {},
   handleSubmitCustomOffset: () => {},
   handleImageLoaded: () => {},
+  handleSetUserLogged: () => {},
 
   currentPokedexOption: '',
   pokemon: {},
@@ -17,6 +18,7 @@ export const PokemonsContext = React.createContext({
   loadingRequired: false,
   imageLoaded: false,
   offset: null,
+  isUserLogged: false,
 });
 
 const PokemonsProvider = ({ children }) => {
@@ -28,6 +30,7 @@ const PokemonsProvider = ({ children }) => {
   const [loadingRequired, setLoadingRequired] = useState(false);
   const [offset, setOffset] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [isUserLogged, setIsUserLogged] = useState(false);
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -38,6 +41,11 @@ const PokemonsProvider = ({ children }) => {
       handleGetPokemonList();
     }
   }, [offset]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleSetUserLogged = () => {
+    setIsUserLogged(true);
+    console.log('user logged = true!');
+  };
 
   const handleImageLoaded = () => {
     setImageLoaded(true);
@@ -142,12 +150,14 @@ const PokemonsProvider = ({ children }) => {
         handleDecrementOffset,
         handleSubmitCustomOffset,
         handleImageLoaded,
+        handleSetUserLogged,
         currentPokedexOption,
         pokemon,
         pokemonList,
         loadingRequired,
         imageLoaded,
         offset,
+        isUserLogged,
       }}
     >
       {children}
