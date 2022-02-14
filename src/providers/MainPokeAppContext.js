@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-export const PokemonsContext = React.createContext({
+export const MainPokeAppContext = React.createContext({
   handleGetPokemonList: () => {},
   handleFindPokemon: () => {},
   handleGetRandomPokemon: () => {},
@@ -21,7 +21,7 @@ export const PokemonsContext = React.createContext({
   isUserLogged: false,
 });
 
-const PokemonsProvider = ({ children }) => {
+const MainPokeAppProvider = ({ children }) => {
   const API = 'https://pokeapi.co/api/v2/pokemon';
 
   const [currentPokedexOption, setCurrentPokedexOption] = useState(null);
@@ -138,54 +138,8 @@ const PokemonsProvider = ({ children }) => {
     setCurrentPokedexOption(null);
   };
 
-  const [responseData, setResponseData] = useState(null);
-
-  const validateUser = (user) => {
-    fetch('http://192.168.64.2/poke-trainer-backend/login-registration/authentication.php', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: JSON.stringify(user),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data) {
-          console.log('data: ', data);
-          setResponseData(data);
-        } else {
-          alert('No data');
-        }
-      })
-      .catch((error) => {
-        console.log('error: ', error);
-      });
-  };
-
-  const registerUser = (newUser) => {
-    fetch('http://192.168.64.2/poke-trainer-backend/login-registration/register-user.php', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: JSON.stringify(newUser),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data) {
-          console.log('data: ', data);
-          setResponseData(data);
-        } else {
-          alert('No data');
-        }
-      })
-      .catch((error) => {
-        console.log('error: ', error);
-      });
-  };
-
   return (
-    <PokemonsContext.Provider
+    <MainPokeAppContext.Provider
       value={{
         handleGetRandomPokemon,
         handleFindPokemon,
@@ -204,13 +158,10 @@ const PokemonsProvider = ({ children }) => {
         imageLoaded,
         offset,
         isUserLogged,
-        validateUser,
-        registerUser,
-        responseData,
       }}
     >
       {children}
-    </PokemonsContext.Provider>
+    </MainPokeAppContext.Provider>
   );
 };
-export default PokemonsProvider;
+export default MainPokeAppProvider;

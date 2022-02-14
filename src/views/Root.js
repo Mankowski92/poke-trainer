@@ -9,12 +9,13 @@ import Pokedex from 'views/Pokedex';
 import Hunting from 'views/Hunting';
 import Login from 'views/Login';
 import Registration from 'views/Registration';
-import { PokemonsContext } from '../providers/PokemonsProvider';
+import MainPokeAppProvider, { MainPokeAppContext } from '../providers/MainPokeAppContext';
+import LoginRegistrationProvider from '../providers/LoginRegistrationContext';
 
 const Root = () => {
   const location = useLocation();
-  const ctx = useContext(PokemonsContext);
-  const { resetPokedexOptions } = useContext(PokemonsContext);
+  const ctx = useContext(MainPokeAppContext);
+  const { resetPokedexOptions } = useContext(MainPokeAppContext);
   // Use effect made for temp logging actual path to further use
   useEffect(() => {
     console.log('Location changed for', location.pathname);
@@ -28,23 +29,27 @@ const Root = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Wrapper>
-        <Switch>
-          <Route path="/pokedex">
-            <Pokedex />
-          </Route>
-          <Route path="/hunting">
-            <Hunting />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/registration">
-            <Registration />
-          </Route>
-          <Route strict path="/">
-            <Dashboard />
-          </Route>
-        </Switch>
+        <MainPokeAppProvider>
+          <LoginRegistrationProvider>
+            <Switch>
+              <Route path="/pokedex">
+                <Pokedex />
+              </Route>
+              <Route path="/hunting">
+                <Hunting />
+              </Route>
+              <Route path="/login">
+                <Login />
+              </Route>
+              <Route path="/registration">
+                <Registration />
+              </Route>
+              <Route strict path="/">
+                <Dashboard />
+              </Route>
+            </Switch>
+          </LoginRegistrationProvider>
+        </MainPokeAppProvider>
       </Wrapper>
     </ThemeProvider>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledGetPokemonWrapper } from './PokedexContainer.styles';
+import DefaultContainer from '../Containers/DefaultContainer/DefaultContainer';
 import PokedexNav from './PokedexNav/PokedexNav';
 import PokemonList from './PokemonList/PokemonList';
 import RandomPokemon from './RandomPokemon/RandomPokemon';
@@ -8,12 +8,12 @@ import FindPokemon from './FindPokemon/FindPokemon';
 const PokedexContainer = () => {
   return (
     <>
-      <StyledGetPokemonWrapper>
+      <DefaultContainer>
         <PokedexNav />
         <PokemonList />
         <RandomPokemon />
         <FindPokemon />
-      </StyledGetPokemonWrapper>
+      </DefaultContainer>
     </>
   );
 };

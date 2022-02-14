@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { StyledFindPokemonContainer } from './FindPokemon.styles';
-import { PokemonsContext } from '../../../providers/PokemonsProvider';
+import { MainPokeAppContext } from '../../../providers/MainPokeAppContext';
 
 const FindPokemon = () => {
-  const ctx = useContext(PokemonsContext);
+  const ctx = useContext(MainPokeAppContext);
 
   return (
     <>

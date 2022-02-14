@@ -1,6 +1,6 @@
 import React from 'react';
-import Nav from '../../Nav/Nav';
 import { StyledDefaultContainer } from './DefaultContainer.styles';
+import Nav from '../../Nav/Nav';
 
 const DefaultContainer = ({ children }) => {
   return (

@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { StyledPokedexButtonsContainer, StyledButton } from './PokedexNav.styles';
-import { PokemonsContext } from '../../../providers/PokemonsProvider';
+import { StyledButton, StyledPokedexButtonsContainer } from './PokedexNav.styles';
+import { MainPokeAppContext } from '../../../providers/MainPokeAppContext';
 
 const PokedexNav = () => {
-  const { handleGetRandomPokemon, handleGetPokemonList, handleFindPokemon } = useContext(PokemonsContext);
+  const { handleGetRandomPokemon, handleGetPokemonList, handleFindPokemon } = useContext(MainPokeAppContext);
 
   return (
     <>

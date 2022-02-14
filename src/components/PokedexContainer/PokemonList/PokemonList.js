@@ -1,13 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { StyledPokemonListContainer } from './PokemonList.styles';
-import { PokemonsContext } from '../../../providers/PokemonsProvider';
+import { MainPokeAppContext } from '../../../providers/MainPokeAppContext';
 
 const PokemonList = () => {
-  const ctx = useContext(PokemonsContext);
+  const ctx = useContext(MainPokeAppContext);
 
-  const { handleIncrementOffset } = useContext(PokemonsContext);
-  const { handleDecrementOffset } = useContext(PokemonsContext);
-  const { handleSubmitCustomOffset } = useContext(PokemonsContext);
+  const { handleIncrementOffset } = useContext(MainPokeAppContext);
+  const { handleDecrementOffset } = useContext(MainPokeAppContext);
+  const { handleSubmitCustomOffset } = useContext(MainPokeAppContext);
 
   const [offset, setOffset] = useState('');
   const submitOffset = (event) => {

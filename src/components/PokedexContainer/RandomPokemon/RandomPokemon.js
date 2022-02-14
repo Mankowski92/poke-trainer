@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { StyledPokemonContainer } from './RandomPokemon.styles';
-import { PokemonsContext } from '../../../providers/PokemonsProvider';
+import { MainPokeAppContext } from '../../../providers/MainPokeAppContext';
 
 const RandomPokemon = () => {
-  const ctx = useContext(PokemonsContext);
+  const ctx = useContext(MainPokeAppContext);
 
-  const { capitalizeFirstLetter } = useContext(PokemonsContext);
-  const { handleImageLoaded } = useContext(PokemonsContext);
+  const { capitalizeFirstLetter } = useContext(MainPokeAppContext);
+  const { handleImageLoaded } = useContext(MainPokeAppContext);
 
   return (
     <>

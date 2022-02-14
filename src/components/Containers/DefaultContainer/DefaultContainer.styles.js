@@ -6,7 +6,6 @@ export const StyledDefaultContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.yellow};
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   min-height: 80vh;
   border-radius: 15px;

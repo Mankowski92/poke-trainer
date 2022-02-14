@@ -1,8 +1,8 @@
 import React from 'react';
-import { BgWrapper } from 'components/DashboardContainer/DashboardContainer.styles';
+import { BgWrapper } from './DashboardContainer.styles';
 
-const DashboardContainer = ({ children }) => {
-  return <BgWrapper>{children}</BgWrapper>;
+const DashboardContainer = () => {
+  return <BgWrapper />;
 };
 
 export default DashboardContainer;

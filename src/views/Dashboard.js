@@ -1,13 +1,12 @@
 import React from 'react';
-import Nav from '../components/Nav/Nav';
 import DashboardContainer from '../components/DashboardContainer/DashboardContainer';
+import Nav from '../components/Nav/Nav';
 
 const Dashboard = () => {
   return (
     <>
-      <DashboardContainer>
-        <Nav />
-      </DashboardContainer>
+      <Nav />
+      <DashboardContainer />
     </>
   );
 };

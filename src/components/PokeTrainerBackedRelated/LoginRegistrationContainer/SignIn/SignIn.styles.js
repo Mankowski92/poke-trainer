@@ -6,17 +6,22 @@ export const SignInContainer = styled.div`
   border-radius: 15px;
   padding: 30px;
   min-width: 300px;
+  margin: auto 0;
+
   .sign-in-form {
     display: flex;
     flex-direction: column;
+
     .sign-in-title {
       font-size: 2rem;
       line-height: 2rem;
       margin-bottom: 1.5rem;
     }
+
     label {
       margin-top: 3px;
     }
+
     .sign-in-submit {
       background-color: ${({ theme }) => theme.colors.blue};
       margin-top: 8px;
@@ -26,16 +31,19 @@ export const SignInContainer = styled.div`
       line-height: 26px;
     }
   }
+
   .login-fail-warning {
     color: red;
     margin-top: 0.5rem;
     font-weight: 600;
     ${({ theme }) => theme.colors.red};
   }
+
   .create-account {
     display: flex;
     justify-content: space-between;
     margin-top: 25px;
+
     .create-account-infobox {
       display: flex;
       flex-direction: column;
@@ -62,6 +70,8 @@ export const SuccessfulLoginContainer = styled.div`
   border-radius: 15px;
   padding: 30px;
   font-size: 2rem;
+  margin: auto 0;
+
   .main-wraper {
     display: flex;
     flex-direction: column;
