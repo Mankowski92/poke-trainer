@@ -1,11 +1,10 @@
 import React from 'react';
-import Nav from '../components/Nav/Nav';
+import HuntingContainer from '../components/HuntingContainer/HuntingContainer';
 
 const Hunting = () => {
   return (
     <>
-      <Nav />
-      <h1>HUNTING VIEW</h1>
+      <HuntingContainer></HuntingContainer>
     </>
   );
 };

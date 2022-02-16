@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import DefaultContainer from '../../../Containers/DefaultContainer/DefaultContainer';
-import { MainPokeAppContext } from '../../../../providers/MainPokeAppContext';
-import { LoginRegistrationContext } from '../../../../providers/LoginRegistrationContext';
+import { MainPokeAppContext } from 'providers/MainPokeAppContext';
+import { LoginRegistrationContext } from 'providers/LoginRegistrationContext';
 import { SignInContainer, StyledLoginLink, SuccessfulLoginContainer } from './SignIn.styles';
 import { useHistory } from 'react-router-dom';
 
@@ -10,9 +10,10 @@ const SignIn = () => {
   const ctxLogin = useContext(LoginRegistrationContext);
 
   const { validateUser } = useContext(LoginRegistrationContext);
-  // const {handleSetUserLogged} = useContext(LoginRegistrationContext);
+  const { handleClearResponseData } = useContext(LoginRegistrationContext);
+  const { handleSetUserLogged } = useContext(MainPokeAppContext);
+  const { handleSetGlobalUserName } = useContext(MainPokeAppContext);
   const [user, setUser] = useState({});
-  const [loginSuccess, setLoginSuccess] = useState(false);
 
   const history = useHistory();
 
@@ -27,37 +28,44 @@ const SignIn = () => {
     e.preventDefault();
     validateUser(user);
     setUser({});
+    console.log('2: ', ctx.isUserLogged);
     e.target.reset();
   };
 
-  // need to reset/change SignIn component after successful login
-
   useEffect(() => {
-    if (loginSuccess) {
-      loginSuccessAction();
+    if (ctx.isUserLogged === false && ctxLogin.responseData !== null) {
+      console.log('USE EFFECT: ', ctxLogin.responseData);
+      validateLoginSuccess();
     }
-  }, [loginSuccess]);
+    if (ctxLogin.responseData === null) {
+      console.log('RESPONSE DATA = NULL');
+    }
+  }, [ctxLogin.responseData]);
 
   const loginSuccessAction = () => {
+    handleSetUserLogged();
+    console.log('3: ', ctx.isUserLogged);
+    handleSetGlobalUserName(ctxLogin.responseData.username);
     setTimeout(() => {
       history.push('/home');
     }, 4000);
   };
 
-  useEffect(() => {
-    validateLoginSuccess();
-  }, [ctxLogin.responseData]);
-
   const validateLoginSuccess = () => {
     if (ctxLogin.responseData) {
-      ctxLogin.responseData.success === 1 ? setLoginSuccess(true) : setLoginSuccess(false);
+      if (ctxLogin.responseData.success === 1) {
+        loginSuccessAction();
+        console.log('4: ', ctx.isUserLogged);
+        // &&
+        // handleClearResponseData()
+      }
     }
   };
 
   return (
     <>
       <DefaultContainer>
-        {!loginSuccess ? (
+        {ctx.isUserLogged === false ? (
           <SignInContainer>
             <form className="sign-in-form" onSubmit={submitUser}>
               <span className="sign-in-title">Sing in</span>
@@ -67,7 +75,7 @@ const SignIn = () => {
               <input type="password" id="password" onChange={(e) => createUserDraft(e, 'password')} placeholder="Enter password" autoComplete="off" />
               <input className="sign-in-submit" type="submit" value="Submit" />
             </form>
-            {ctxLogin.responseData && !loginSuccess ? (
+            {ctxLogin.responseData && !ctx.isUserLogged ? (
               <>
                 <div className="login-fail-warning">Login unsuccessful {ctxLogin.responseData.msg}</div>
               </>

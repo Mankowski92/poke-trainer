@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export const LoginRegistrationContext = React.createContext({
-  handleTest: () => {},
-
-  testValue: 'This is test value',
+  handleClearResponseData: () => {},
   responseData: null,
 });
 
 const LoginRegistrationProvider = ({ children }) => {
-  const [testValue, setTestValue] = useState('This is test value');
+  const [responseData, setResponseData] = useState(null);
 
-  const handleTest = () => {
-    setTestValue('NEW TEST VALUE');
-    console.log('Test value changed');
+  const handleClearResponseData = () => {
+    setResponseData(null);
   };
 
-  const [responseData, setResponseData] = useState(null);
+  useEffect(() => {
+    if (responseData === null) {
+      console.log('RESPONSE DATA = NULL');
+    }
+  }, [responseData]);
 
   const validateUser = (user) => {
     fetch('http://192.168.64.2/poke-trainer-backend/login-registration/authentication.php', {
@@ -64,8 +65,7 @@ const LoginRegistrationProvider = ({ children }) => {
   return (
     <LoginRegistrationContext.Provider
       value={{
-        handleTest,
-        testValue,
+        handleClearResponseData,
         validateUser,
         registerUser,
         responseData,

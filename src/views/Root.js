@@ -8,6 +8,7 @@ import Dashboard from 'views/Dashboard';
 import Pokedex from 'views/Pokedex';
 import Hunting from 'views/Hunting';
 import Login from 'views/Login';
+import Account from 'views/Account';
 import Registration from 'views/Registration';
 import MainPokeAppProvider, { MainPokeAppContext } from '../providers/MainPokeAppContext';
 import LoginRegistrationProvider from '../providers/LoginRegistrationContext';
@@ -43,6 +44,9 @@ const Root = () => {
               </Route>
               <Route path="/registration">
                 <Registration />
+              </Route>
+              <Route path="/account">
+                <Account />
               </Route>
               <Route strict path="/">
                 <Dashboard />

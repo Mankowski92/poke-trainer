@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { LoginRegistrationContext } from 'providers/LoginRegistrationContext';
 
 export const MainPokeAppContext = React.createContext({
   handleGetPokemonList: () => {},
@@ -11,6 +13,8 @@ export const MainPokeAppContext = React.createContext({
   handleSubmitCustomOffset: () => {},
   handleImageLoaded: () => {},
   handleSetUserLogged: () => {},
+  handleSetUserLoggedOut: () => {},
+  handleSetGlobalUserName: () => {},
 
   currentPokedexOption: '',
   pokemon: {},
@@ -19,10 +23,15 @@ export const MainPokeAppContext = React.createContext({
   imageLoaded: false,
   offset: null,
   isUserLogged: false,
+  globalUserName: '',
 });
 
 const MainPokeAppProvider = ({ children }) => {
   const API = 'https://pokeapi.co/api/v2/pokemon';
+
+  const ctxLogin = useContext(LoginRegistrationContext);
+
+  const { handleClearResponseData } = useContext(LoginRegistrationContext);
 
   const [currentPokedexOption, setCurrentPokedexOption] = useState(null);
   const [pokemon, setPokemons] = useState(null);
@@ -31,6 +40,9 @@ const MainPokeAppProvider = ({ children }) => {
   const [offset, setOffset] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isUserLogged, setIsUserLogged] = useState(false);
+  const [globalUserName, setGlobalUserName] = useState(false);
+
+  const history = useHistory();
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -42,14 +54,30 @@ const MainPokeAppProvider = ({ children }) => {
     }
   }, [offset]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  useEffect(() => {
+    if (isUserLogged === false) {
+      console.log('!!! USER LOGGED = FALSE !!!');
+      console.log('Response data at this moment: ', ctxLogin.responseData);
+    }
+  }, [isUserLogged]); //
+
   const handleSetUserLogged = () => {
     setIsUserLogged(true);
-    console.log('user logged = true!');
+  };
+
+  const handleSetUserLoggedOut = () => {
+    setIsUserLogged(false);
+    handleClearResponseData();
+    console.log('RESPONE DATA RESET');
+    history.push('/home');
+  };
+
+  const handleSetGlobalUserName = (userName) => {
+    setGlobalUserName(userName);
   };
 
   const handleImageLoaded = () => {
     setImageLoaded(true);
-    console.log('image loaded!');
   };
 
   const handleIncrementOffset = () => {
@@ -151,6 +179,8 @@ const MainPokeAppProvider = ({ children }) => {
         handleSubmitCustomOffset,
         handleImageLoaded,
         handleSetUserLogged,
+        handleSetUserLoggedOut,
+        handleSetGlobalUserName,
         currentPokedexOption,
         pokemon,
         pokemonList,
@@ -158,6 +188,7 @@ const MainPokeAppProvider = ({ children }) => {
         imageLoaded,
         offset,
         isUserLogged,
+        globalUserName,
       }}
     >
       {children}
