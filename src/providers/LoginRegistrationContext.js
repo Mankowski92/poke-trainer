@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 export const LoginRegistrationContext = React.createContext({
   handleClearResponseData: () => {},
@@ -11,12 +11,6 @@ const LoginRegistrationProvider = ({ children }) => {
   const handleClearResponseData = () => {
     setResponseData(null);
   };
-
-  useEffect(() => {
-    if (responseData === null) {
-      console.log('RESPONSE DATA = NULL');
-    }
-  }, [responseData]);
 
   const validateUser = (user) => {
     fetch('http://192.168.64.2/poke-trainer-backend/login-registration/authentication.php', {

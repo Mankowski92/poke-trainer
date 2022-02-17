@@ -54,13 +54,6 @@ const MainPokeAppProvider = ({ children }) => {
     }
   }, [offset]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => {
-    if (isUserLogged === false) {
-      console.log('!!! USER LOGGED = FALSE !!!');
-      console.log('Response data at this moment: ', ctxLogin.responseData);
-    }
-  }, [isUserLogged]); //
-
   const handleSetUserLogged = () => {
     setIsUserLogged(true);
   };
@@ -68,7 +61,6 @@ const MainPokeAppProvider = ({ children }) => {
   const handleSetUserLoggedOut = () => {
     setIsUserLogged(false);
     handleClearResponseData();
-    console.log('RESPONE DATA RESET');
     history.push('/home');
   };
 

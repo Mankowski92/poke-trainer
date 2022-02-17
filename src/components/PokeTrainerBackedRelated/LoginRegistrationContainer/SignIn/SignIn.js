@@ -28,26 +28,21 @@ const SignIn = () => {
     e.preventDefault();
     validateUser(user);
     setUser({});
-    console.log('2: ', ctx.isUserLogged);
     e.target.reset();
   };
 
   useEffect(() => {
-    if (ctx.isUserLogged === false && ctxLogin.responseData !== null) {
-      console.log('USE EFFECT: ', ctxLogin.responseData);
+    if (!ctx.isUserLogged && ctxLogin.responseData) {
       validateLoginSuccess();
-    }
-    if (ctxLogin.responseData === null) {
-      console.log('RESPONSE DATA = NULL');
     }
   }, [ctxLogin.responseData]);
 
-  const loginSuccessAction = () => {
+  const loginSuccessAction = async () => {
     handleSetUserLogged();
-    console.log('3: ', ctx.isUserLogged);
     handleSetGlobalUserName(ctxLogin.responseData.username);
     setTimeout(() => {
       history.push('/home');
+      handleClearResponseData();
     }, 4000);
   };
 
@@ -55,9 +50,6 @@ const SignIn = () => {
     if (ctxLogin.responseData) {
       if (ctxLogin.responseData.success === 1) {
         loginSuccessAction();
-        console.log('4: ', ctx.isUserLogged);
-        // &&
-        // handleClearResponseData()
       }
     }
   };

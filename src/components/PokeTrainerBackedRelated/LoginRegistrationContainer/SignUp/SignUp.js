@@ -6,6 +6,7 @@ import { LoginContainer, SuccessfulUserCreateContainer } from './SignUp.styles';
 
 const SignUp = () => {
   const ctx = useContext(MainPokeAppContext);
+  const ctxLogin = useContext(LoginRegistrationContext);
 
   const { registerUser } = useContext(LoginRegistrationContext);
   const [newUser, setNewUser] = useState({});
@@ -29,11 +30,11 @@ const SignUp = () => {
   return (
     <>
       <DefaultContainer>
-        {ctx.responseData && ctx.responseData.success === 1 ? (
+        {ctxLogin.responseData && ctxLogin.responseData.success === 1 ? (
           <SuccessfulUserCreateContainer>
             <div className="main-wraper">
-              <span>Great!</span>
-              <span>{ctx.responseData.msg}</span>
+              <span>Success!</span>
+              <span>{ctxLogin.responseData.msg}</span>
             </div>
           </SuccessfulUserCreateContainer>
         ) : (
@@ -53,9 +54,9 @@ const SignUp = () => {
                 autoComplete="off"
               />
               <input className="sign-up-submit" type="submit" value="Submit" />
-              {ctx.responseData ? (
+              {ctxLogin.responseData ? (
                 <>
-                  <div className="">{ctx.responseData.msg}</div>
+                  <div className="">{ctxLogin.responseData.msg}</div>
                 </>
               ) : null}
             </form>
