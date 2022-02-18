@@ -1,11 +1,9 @@
 import React, { useContext, useState } from 'react';
 import DefaultContainer from '../../../Containers/DefaultContainer/DefaultContainer';
-import { MainPokeAppContext } from '../../../../providers/MainPokeAppContext';
 import { LoginRegistrationContext } from '../../../../providers/LoginRegistrationContext';
 import { LoginContainer, SuccessfulUserCreateContainer } from './SignUp.styles';
 
 const SignUp = () => {
-  const ctx = useContext(MainPokeAppContext);
   const ctxLogin = useContext(LoginRegistrationContext);
 
   const { registerUser } = useContext(LoginRegistrationContext);

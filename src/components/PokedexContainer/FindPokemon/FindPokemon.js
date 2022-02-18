@@ -21,7 +21,7 @@ const FindPokemon = () => {
         <StyledFindPokemonContainer>
           <form className="find-pokemon-form" onSubmit={submitOffset}>
             <span> Pokemon id: </span>
-            <input type="number" onChange={(e) => setSearchId(e.target.value)} />
+            <input className="form-number-input" type="number" onChange={(e) => setSearchId(e.target.value)} />
             <input type="submit" value="Set" className="offset-submit" />
           </form>
           {ctx.foundedPokemon ? (

@@ -15,6 +15,10 @@ export const StyledFindPokemonContainer = styled.div`
     height: 12%;
     display: flex;
     align-items: center;
+
+    .form-number-input {
+      margin: 0 5px;
+    }
   }
 
   .founded-pokemon-container-wrapper {
