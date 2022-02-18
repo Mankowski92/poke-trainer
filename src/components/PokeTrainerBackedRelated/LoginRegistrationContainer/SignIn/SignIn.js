@@ -82,7 +82,7 @@ const SignIn = () => {
           </SignInContainer>
         ) : (
           <SuccessfulLoginContainer>
-            <div className="main-wraper">
+            <div className="main-wrapper">
               <span>Login successful!</span>
               <span>{ctxLogin.responseData.msg}</span>
               <span>Redirecting to home page...</span>

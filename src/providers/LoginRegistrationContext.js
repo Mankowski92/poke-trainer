@@ -23,7 +23,6 @@ const LoginRegistrationProvider = ({ children }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data) {
-          console.log('data: ', data);
           setResponseData(data);
         } else {
           alert('No data');
@@ -45,7 +44,6 @@ const LoginRegistrationProvider = ({ children }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data) {
-          console.log('data: ', data);
           setResponseData(data);
         } else {
           alert('No data');

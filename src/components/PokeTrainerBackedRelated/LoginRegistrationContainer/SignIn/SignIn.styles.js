@@ -72,7 +72,7 @@ export const SuccessfulLoginContainer = styled.div`
   font-size: 2rem;
   margin: auto 0;
 
-  .main-wraper {
+  .main-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;

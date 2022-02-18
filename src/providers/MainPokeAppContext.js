@@ -3,22 +3,24 @@ import { useHistory } from 'react-router-dom';
 import { LoginRegistrationContext } from 'providers/LoginRegistrationContext';
 
 export const MainPokeAppContext = React.createContext({
-  handleGetPokemonList: () => {},
-  handleFindPokemon: () => {},
-  handleGetRandomPokemon: () => {},
-  capitalizeFirstLetter: () => {},
   resetPokedexOptions: () => {},
+  handleGetPokemonList: () => {},
+  handleGetRandomPokemon: () => {},
+  handleFindPokemonView: () => {},
   handleIncrementOffset: () => {},
   handleDecrementOffset: () => {},
   handleSubmitCustomOffset: () => {},
+  capitalizeFirstLetter: () => {},
   handleImageLoaded: () => {},
   handleSetUserLogged: () => {},
   handleSetUserLoggedOut: () => {},
   handleSetGlobalUserName: () => {},
+  handleSubmitSearchId: () => {},
 
   currentPokedexOption: '',
   pokemon: {},
   pokemonList: [],
+  foundedPokemon: {},
   loadingRequired: false,
   imageLoaded: false,
   offset: null,
@@ -29,13 +31,12 @@ export const MainPokeAppContext = React.createContext({
 const MainPokeAppProvider = ({ children }) => {
   const API = 'https://pokeapi.co/api/v2/pokemon';
 
-  const ctxLogin = useContext(LoginRegistrationContext);
-
   const { handleClearResponseData } = useContext(LoginRegistrationContext);
 
   const [currentPokedexOption, setCurrentPokedexOption] = useState(null);
   const [pokemon, setPokemons] = useState(null);
   const [pokemonList, setPokemonList] = useState(null);
+  const [foundedPokemon, setFoundedPokemon] = useState(null);
   const [loadingRequired, setLoadingRequired] = useState(false);
   const [offset, setOffset] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -44,9 +45,17 @@ const MainPokeAppProvider = ({ children }) => {
 
   const history = useHistory();
 
+  // Utils function code section below
+
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
+
+  const resetPokedexOptions = () => {
+    setCurrentPokedexOption(null);
+  };
+
+  // Pokemon List code section below
 
   useEffect(() => {
     if (currentPokedexOption != null) {
@@ -54,22 +63,23 @@ const MainPokeAppProvider = ({ children }) => {
     }
   }, [offset]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const handleSetUserLogged = () => {
-    setIsUserLogged(true);
-  };
+  const handleGetPokemonList = () => {
+    setCurrentPokedexOption('pokemonList');
+    const fetchPokemons = async () => {
+      setLoadingRequired(true);
+      setPokemonList(null);
+      let res = await fetch(`${API}?offset=${offset}&limit=6/`);
+      let response = await res.json();
 
-  const handleSetUserLoggedOut = () => {
-    setIsUserLogged(false);
-    handleClearResponseData();
-    history.push('/home');
-  };
-
-  const handleSetGlobalUserName = (userName) => {
-    setGlobalUserName(userName);
-  };
-
-  const handleImageLoaded = () => {
-    setImageLoaded(true);
+      const resolvePokemons = await Promise.all(
+        response.results.map(async (singlePokemon) => {
+          const res = await fetch(singlePokemon.url);
+          return res.json();
+        })
+      );
+      setPokemonList(resolvePokemons);
+    };
+    fetchPokemons();
   };
 
   const handleIncrementOffset = () => {
@@ -92,27 +102,8 @@ const MainPokeAppProvider = ({ children }) => {
     setOffset(userCustomValue - 1);
   };
 
-  // handle responsible for PokemonList
-  const handleGetPokemonList = () => {
-    setCurrentPokedexOption('pokemonList');
-    const fetchPokemons = async () => {
-      setLoadingRequired(true);
-      setPokemonList(null);
-      let res = await fetch(`${API}?offset=${offset}&limit=6/`);
-      let response = await res.json();
+  // Random Pokemon code section below
 
-      const resolvePokemons = await Promise.all(
-        response.results.map(async (singlePokemon) => {
-          const res = await fetch(singlePokemon.url);
-          return res.json();
-        })
-      );
-      setPokemonList(resolvePokemons);
-    };
-    fetchPokemons();
-  };
-
-  // handle responsible for getting  random pokemon in pokedex
   const handleGetRandomPokemon = () => {
     setImageLoaded(false);
 
@@ -136,7 +127,6 @@ const MainPokeAppProvider = ({ children }) => {
         typesArray.push(item.type.name);
       });
 
-      console.log('pokemon object from api for random pokemon', response);
       let pokemon = {
         id: response.id,
         name: response.name,
@@ -149,33 +139,76 @@ const MainPokeAppProvider = ({ children }) => {
     fetchData();
   };
 
-  const handleFindPokemon = () => {
-    setCurrentPokedexOption('findPokemon');
-    console.log('POKEMON FORM');
+  const handleImageLoaded = () => {
+    setImageLoaded(true);
   };
 
-  const resetPokedexOptions = () => {
-    setCurrentPokedexOption(null);
+  // Find Pokemon code section below
+
+  const handleFindPokemonView = () => {
+    setCurrentPokedexOption('findPokemon');
+  };
+
+  const handleSubmitSearchId = (userCustomValue) => {
+    const findPokemon = async () => {
+      setLoadingRequired(true);
+      let res = await fetch(`${API}/${userCustomValue}`);
+      let response = await res.json();
+      let typesArray = [];
+
+      response.types.forEach((item) => {
+        typesArray.push(item.type.name);
+      });
+
+      let foundedPokemon = {
+        id: response.id,
+        name: response.name,
+        artwork: response.sprites.other['official-artwork'].front_default,
+        stats: response.stats,
+        types: typesArray,
+      };
+      console.log('Founded pokemon', foundedPokemon);
+      setFoundedPokemon(foundedPokemon);
+    };
+    findPokemon();
+  };
+
+  // Login/registration code section below
+
+  const handleSetUserLogged = () => {
+    setIsUserLogged(true);
+  };
+
+  const handleSetUserLoggedOut = () => {
+    setIsUserLogged(false);
+    handleClearResponseData();
+    history.push('/home');
+  };
+
+  const handleSetGlobalUserName = (userName) => {
+    setGlobalUserName(userName);
   };
 
   return (
     <MainPokeAppContext.Provider
       value={{
-        handleGetRandomPokemon,
-        handleFindPokemon,
-        handleGetPokemonList,
-        capitalizeFirstLetter,
         resetPokedexOptions,
+        handleGetPokemonList,
+        handleGetRandomPokemon,
+        handleFindPokemonView,
         handleIncrementOffset,
         handleDecrementOffset,
         handleSubmitCustomOffset,
+        capitalizeFirstLetter,
         handleImageLoaded,
         handleSetUserLogged,
         handleSetUserLoggedOut,
         handleSetGlobalUserName,
+        handleSubmitSearchId,
         currentPokedexOption,
         pokemon,
         pokemonList,
+        foundedPokemon,
         loadingRequired,
         imageLoaded,
         offset,

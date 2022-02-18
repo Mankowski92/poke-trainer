@@ -16,7 +16,7 @@ export const StyledPokemonContainer = styled.div`
     border-radius: 25px;
   }
 
-  .pokemon-container-wraper {
+  .pokemon-container-wrapper {
     background-color: ${({ theme }) => theme.colors.white};
     margin-bottom: 2.5rem;
     display: flex;

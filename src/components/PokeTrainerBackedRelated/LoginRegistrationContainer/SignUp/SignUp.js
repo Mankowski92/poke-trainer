@@ -32,7 +32,7 @@ const SignUp = () => {
       <DefaultContainer>
         {ctxLogin.responseData && ctxLogin.responseData.success === 1 ? (
           <SuccessfulUserCreateContainer>
-            <div className="main-wraper">
+            <div className="main-wrapper">
               <span>Success!</span>
               <span>{ctxLogin.responseData.msg}</span>
             </div>
