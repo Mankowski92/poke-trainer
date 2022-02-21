@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { LoginRegistrationContext } from 'providers/LoginRegistrationContext';
+import useLocalStorage from '../funcStore/useLocalStorage';
 
 export const MainPokeAppContext = React.createContext({
   resetPokedexOptions: () => {},
@@ -40,8 +41,8 @@ const MainPokeAppProvider = ({ children }) => {
   const [loadingRequired, setLoadingRequired] = useState(false);
   const [offset, setOffset] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [isUserLogged, setIsUserLogged] = useState(false);
-  const [globalUserName, setGlobalUserName] = useState(false);
+  const [isUserLogged, setIsUserLogged] = useLocalStorage('isUserLogged', false);
+  const [globalUserName, setGlobalUserName] = useLocalStorage('globalUserName', false);
 
   const history = useHistory();
 

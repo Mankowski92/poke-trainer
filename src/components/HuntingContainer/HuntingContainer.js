@@ -9,7 +9,10 @@ const HuntingContainer = () => {
   return (
     <>
       <DefaultContainer>
-        <StyledHuntingContainer>Hunting content</StyledHuntingContainer>
+        <StyledHuntingContainer>
+          <div className="main-screen">Ekran główny</div>
+          <div className="user-interface">Ekwipunek i interfejs</div>
+        </StyledHuntingContainer>
       </DefaultContainer>
     </>
   );

@@ -6,4 +6,16 @@ export const StyledHuntingContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .main-screen {
+    background-color: ${({ theme }) => theme.colors.blue};
+    width: 70%;
+    height: 90%;
+  }
+
+  .user-interface {
+    width: 25%;
+    background-color: ${({ theme }) => theme.colors.white};
+    height: 90%;
+  }
 `;
