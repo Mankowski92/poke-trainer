@@ -12,6 +12,7 @@ import Account from 'views/Account';
 import Registration from 'views/Registration';
 import MainPokeAppProvider, { MainPokeAppContext } from '../providers/MainPokeAppContext';
 import LoginRegistrationProvider from '../providers/LoginRegistrationContext';
+import HuntEqProvider from 'providers/HuntEqContext';
 
 const Root = () => {
   const location = useLocation();
@@ -32,26 +33,28 @@ const Root = () => {
       <Wrapper>
         <MainPokeAppProvider>
           <LoginRegistrationProvider>
-            <Switch>
-              <Route path="/pokedex">
-                <Pokedex />
-              </Route>
-              <Route path="/hunting">
-                <Hunting />
-              </Route>
-              <Route path="/login">
-                <Login />
-              </Route>
-              <Route path="/registration">
-                <Registration />
-              </Route>
-              <Route path="/account">
-                <Account />
-              </Route>
-              <Route strict path="/">
-                <Dashboard />
-              </Route>
-            </Switch>
+            <HuntEqProvider>
+              <Switch>
+                <Route path="/pokedex">
+                  <Pokedex />
+                </Route>
+                <Route path="/hunting">
+                  <Hunting />
+                </Route>
+                <Route path="/login">
+                  <Login />
+                </Route>
+                <Route path="/registration">
+                  <Registration />
+                </Route>
+                <Route path="/account">
+                  <Account />
+                </Route>
+                <Route strict path="/">
+                  <Dashboard />
+                </Route>
+              </Switch>
+            </HuntEqProvider>
           </LoginRegistrationProvider>
         </MainPokeAppProvider>
       </Wrapper>

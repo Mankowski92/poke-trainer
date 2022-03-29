@@ -1,5 +1,5 @@
 import React from 'react';
-import SignIn from '../components/PokeTrainerBackedRelated/LoginRegistrationContainer/SignIn/SignIn';
+import SignIn from '../components/PokeTrainerBackendRelated/LoginRegistrationContainer/SignIn/SignIn';
 
 const Login = () => {
   return (

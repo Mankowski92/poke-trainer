@@ -1,5 +1,5 @@
 import React from 'react';
-import AccountContainer from '../components/PokeTrainerBackedRelated/AccountContainer/AccountContainer.js';
+import AccountContainer from '../components/PokeTrainerBackendRelated/AccountContainer/AccountContainer.js';
 
 const Account = () => {
   return (

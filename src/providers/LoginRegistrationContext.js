@@ -13,7 +13,7 @@ const LoginRegistrationProvider = ({ children }) => {
   };
 
   const validateUser = (user) => {
-    fetch('http://192.168.64.2/poke-trainer-backend/login-registration/authentication.php', {
+    fetch('http://localhost:81/poke-trainer-backend/login-registration/authentication.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
@@ -22,7 +22,9 @@ const LoginRegistrationProvider = ({ children }) => {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log('data: ', data);
         if (data) {
+          console.log('data: ', data);
           setResponseData(data);
         } else {
           alert('No data');
@@ -34,7 +36,7 @@ const LoginRegistrationProvider = ({ children }) => {
   };
 
   const registerUser = (newUser) => {
-    fetch('http://192.168.64.2/poke-trainer-backend/login-registration/register-user.php', {
+    fetch('http://localhost:81/poke-trainer-backend/login-registration/register-user.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
